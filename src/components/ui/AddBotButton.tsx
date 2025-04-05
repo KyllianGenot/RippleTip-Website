@@ -1,27 +1,31 @@
 // src/components/ui/AddBotButton.tsx
 import React from 'react';
-import Button from './Button'; // Importer le composant Button principal
-import { DiscordIcon } from './icons'; // Importer l'icône Discord
-import { BOT_INVITE_LINK } from '../../constants'; // Importer le lien constant
+import Button from './Button';
+import { DiscordIcon } from './icons'; // Chemin corrigé
+import { BOT_INVITE_LINK } from '../../constants';
 
 interface AddBotButtonProps {
-  className?: string; // Pour classes de layout/visibilité
-  onClick?: () => void; // Pour fermer le menu mobile
+  className?: string;
+  onClick?: () => void;
+  size?: 'sm' | 'md' | 'lg';
 }
 
-const AddBotButton: React.FC<AddBotButtonProps> = ({ className = '', onClick }) => {
+const AddBotButton: React.FC<AddBotButtonProps> = ({
+  className = '',
+  onClick,
+  size = 'lg',
+}) => {
   return (
     <Button
-      as="a" // Rendu comme lien
+      as="a"
       href={BOT_INVITE_LINK}
       target="_blank"
       rel="noopener noreferrer"
-      variant="discord" // Utiliser la nouvelle variante
-      size="lg" // Utiliser la taille large
-      className={className} // Passer les classes externes (ex: hidden md:inline-flex)
-      onClick={onClick} // Passer le onClick pour fermer le menu mobile
-      // Passer l'icône Discord à gauche
-      iconLeft={<DiscordIcon className="w-5 h-5" />} // Ajuster taille si nécessaire
+      variant="discord"
+      size={size}
+      className={className}
+      onClick={onClick}
+      iconLeft={<DiscordIcon className={size === 'lg' ? 'w-5 h-5' : size === 'md' ? 'w-4 h-4' : 'w-3.5 h-3.5'} />}
     >
       Add to Discord
     </Button>

@@ -1,9 +1,7 @@
 // src/components/ui/Button.tsx
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Link, LinkProps } from 'react-router-dom';
-import { DiscordIcon } from './icons'; // Importer DiscordIcon
 
-// Définir les variantes possibles, ajout de 'discord'
 type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'discord';
 type ButtonSize = 'sm' | 'md' | 'lg';
 
@@ -13,11 +11,10 @@ type BaseButtonProps = {
   size?: ButtonSize;
   className?: string;
   as?: 'button' | 'a' | typeof Link;
-  iconLeft?: React.ReactNode; // Pour icône à gauche (comme Discord)
-  iconRight?: React.ReactNode; // Pour icône à droite (comme la flèche)
+  iconLeft?: React.ReactNode;
+  iconRight?: React.ReactNode;
 };
 
-// Types discriminés (pas de changement ici)
 type ButtonProps = BaseButtonProps & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'className' | 'children'> & { as?: 'button' };
 type AnchorProps = BaseButtonProps & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'className' | 'children'> & { as: 'a' };
 type LinkButtonProps = BaseButtonProps & Omit<LinkProps, 'className' | 'to' | 'children'> & { as: typeof Link, to: LinkProps['to'] };
@@ -34,67 +31,112 @@ const Button = ({
   iconRight,
   ...props
 }: Props) => {
+  const buttonRef = useRef<HTMLElement | null>(null);
+  const shineRef = useRef<HTMLSpanElement | null>(null);
 
-  // Styles de base (plus élégants)
+  useEffect(() => {
+    const button = buttonRef.current;
+    const shine = shineRef.current;
+    if (!button || !shine) return;
+
+    const handleMouseEnter = () => {
+      // Réinitialiser l'état initial
+      shine.style.opacity = '1';
+      shine.style.transform = 'translateX(-100%) skewX(-25deg)';
+
+      // Calculer la largeur du bouton
+      const buttonWidth = button.offsetWidth;
+      // La distance totale à parcourir : largeur du bouton + largeur de shine-effect (60px)
+      const shineWidth = 60; // Correspond à la largeur définie dans CSS
+      const distanceToTravel = buttonWidth + shineWidth;
+
+      // Animer l'effet de shine
+      let start: number | null = null;
+      const duration = 750; // 0.75s, comme dans l'animation CSS d'origine
+
+      const animate = (timestamp: number) => {
+        if (!start) start = timestamp;
+        const progress = (timestamp - start) / duration;
+        const translateX = progress * distanceToTravel - shineWidth;
+
+        shine.style.transform = `translateX(${translateX}px) skewX(-25deg)`;
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          // Réinitialiser l'opacité à la fin
+          shine.style.opacity = '0';
+        }
+      };
+
+      requestAnimationFrame(animate);
+    };
+
+    button.addEventListener('mouseenter', handleMouseEnter);
+    return () => {
+      button.removeEventListener('mouseenter', handleMouseEnter);
+    };
+  }, []);
+
   const baseClasses = `
-    inline-flex items-center justify-center font-semibold
-    rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2
-    dark:focus:ring-offset-gray-900 transition-all duration-200 ease-out
-    transform active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed
-    whitespace-nowrap group relative overflow-hidden
+    inline-flex items-center justify-center font-semibold align-middle
+    border focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-900
+    transition-all duration-300 ease-out whitespace-nowrap
+    relative overflow-hidden group
+    shadow-md hover:shadow-lg active:shadow-sm
+    transform active:scale-[0.99]
+    disabled:opacity-60 disabled:cursor-not-allowed disabled:shadow-md disabled:scale-100
   `;
-  // Ajout de group, relative, overflow-hidden pour les effets
-  // Ajout de active:scale pour un léger retour au clic
 
-  // Styles de taille (légèrement ajustés)
   const sizeClasses: Record<ButtonSize, string> = {
-    sm: 'px-4 py-2 text-sm gap-2', // Augmenté padding, ajouté gap
-    md: 'px-5 py-2.5 text-sm gap-2', // Taille par défaut, py augmenté
-    lg: 'px-7 py-3 text-base gap-3', // Plus grand padding/texte/gap pour lg
+    sm: 'px-4 py-2 text-xs rounded-lg',
+    md: 'px-5 py-2.5 text-sm rounded-xl',
+    lg: 'px-7 py-3 text-base rounded-xl',
   };
 
-  // Styles de variantes (améliorés)
   const variantClasses: Record<ButtonVariant, string> = {
     primary: `
-      bg-indigo-600 text-white border border-transparent
-      hover:bg-indigo-700 focus:ring-indigo-500
-      dark:bg-indigo-500 dark:hover:bg-indigo-600
+      bg-gradient-to-br from-indigo-500 via-purple-500 to-indigo-600 text-white border-indigo-600/30
+      hover:from-indigo-400 hover:to-purple-400 focus:ring-indigo-500
+      dark:from-indigo-400 dark:via-purple-400 dark:to-indigo-500 dark:border-indigo-300/30
+      dark:hover:from-indigo-300 dark:hover:to-purple-300
     `,
     secondary: `
-      bg-gray-100 text-gray-800 border border-gray-200
-      hover:bg-gray-200 focus:ring-indigo-500
-      dark:bg-gray-700/80 dark:text-gray-200 dark:border-gray-600/80
-      dark:hover:bg-gray-700 dark:hover:border-gray-600
+      bg-gradient-to-br from-gray-200 to-gray-300 text-gray-800 border-gray-400/70
+      hover:from-gray-100 hover:to-gray-200 hover:border-gray-500 focus:ring-indigo-500
+      dark:from-gray-700 dark:to-gray-800 dark:text-gray-200 dark:border-gray-600/50
+      dark:hover:from-gray-600 dark:hover:to-gray-700 dark:hover:border-gray-500
     `,
     outline: `
-      bg-transparent border-2 text-indigo-600 border-indigo-500
-      hover:bg-indigo-50 focus:ring-indigo-500
-      dark:text-indigo-400 dark:border-indigo-400 dark:hover:bg-indigo-900/20
+      bg-white/50 dark:bg-gray-800/30 backdrop-blur-sm border-2 text-indigo-600 border-indigo-400/80
+      hover:bg-indigo-100/80 hover:border-indigo-500 hover:text-indigo-700 focus:ring-indigo-500
+      dark:text-indigo-400 dark:border-indigo-500/80 dark:hover:bg-indigo-900/30 dark:hover:border-indigo-400 dark:hover:text-indigo-300
     `,
     discord: `
-      bg-[#5865F2] text-white border border-transparent
-      hover:bg-[#4f5bda] focus:ring-[#5865F2]/50
-      dark:bg-[#5865F2] dark:hover:bg-[#4f5bda]
-    `, // Couleurs spécifiques Discord
+      bg-gradient-to-br from-[#5865F2] via-[#6a75f3] to-[#5865F2] text-white border-[#4752C4]/30
+      hover:from-[#4752C4] hover:to-[#5865F2] focus:ring-[#5865F2]/50
+      dark:border-[#6a75f3]/30
+    `,
   };
 
   const combinedClasses = `${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${className}`;
 
   return (
-    <Component className={combinedClasses} {...props as any}>
-      {/* Icône Gauche */}
-      {iconLeft && <span className="flex-shrink-0">{iconLeft}</span>}
-
-      {/* Contenu Texte */}
-      <span className="relative z-10">{children}</span>
-
-      {/* Icône Droite */}
-      {iconRight && <span className="flex-shrink-0 transition-transform duration-200 ease-out group-hover:translate-x-1">{iconRight}</span>}
-
-       {/* Optionnel: Effet subtil au survol pour les boutons primaires/discord */}
-       {(variant === 'primary' || variant === 'discord') && (
-         <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-[0.08] transition-opacity duration-200 rounded-lg"></div>
-       )}
+    <Component ref={buttonRef} className={combinedClasses} {...props as any}>
+      <span ref={shineRef} className="shine-effect pointer-events-none absolute left-[-200%] top-0 w-[60px] h-[200%]"></span>
+      <span className="relative z-[1] inline-flex items-center">
+        {iconLeft && (
+          <span className={`flex-shrink-0 ${size === 'lg' ? 'mr-2' : size === 'md' ? 'mr-1.5' : 'mr-1'}`}>
+            {iconLeft}
+          </span>
+        )}
+        <span className="leading-none">{children}</span>
+        {iconRight && (
+          <span className={`flex-shrink-0 transition-transform duration-300 group-hover:translate-x-1 ${size === 'lg' ? 'ml-2' : size === 'md' ? 'ml-1.5' : 'ml-1'}`}>
+            {iconRight}
+          </span>
+        )}
+      </span>
     </Component>
   );
 };

@@ -39,4 +39,28 @@ body {
 .animation-delay-2000 { animation-delay: 2s; }
 .animation-delay-4000 { animation-delay: 4s; }
 
-/* Supprimez les anciennes keyframes (@keyframes float, @keyframes ripple) si elles ne sont plus utilisées */
+.shine-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(-100%) skewX(-25deg);
+}
+
+.dark .shine-effect {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+}
