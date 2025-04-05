@@ -1,10 +1,8 @@
-// src/components/hero/HeroTransactionDemo.tsx
 import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { useTheme } from '../../hooks'; // Adjust path
+import { useTheme } from '../../hooks';
 
-// Sub-components defined within the same file as per prompt
 const DemoMessage: React.FC<{ username: string, message: string, delay: number }> = ({ username, message, delay }) => {
     const { theme } = useTheme();
     const isDarkMode = theme === 'dark';
@@ -66,7 +64,7 @@ export const HeroTransactionDemo: React.FC = () => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.2 // Trigger animation when 20% is visible
+    threshold: 0.2
   });
 
   useEffect(() => {
@@ -90,12 +88,11 @@ export const HeroTransactionDemo: React.FC = () => {
           transition: {
             duration: 0.6,
             ease: "easeOut",
-            delay: 0.2 // Start slightly after HeroContent
+            delay: 0.2
           }
         }
       }}
     >
-      {/* Mock Title Bar */}
       <div className={`p-2 px-3 ${isDarkMode ? 'bg-gray-900/80' : 'bg-gray-100/90'} border-b ${isDarkMode ? 'border-gray-700' : 'border-gray-200'}`}>
         <div className="flex items-center space-x-1.5">
           <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -104,24 +101,23 @@ export const HeroTransactionDemo: React.FC = () => {
         </div>
       </div>
 
-      {/* Chat content */}
-      <div className="p-4 md:p-6 min-h-[200px]"> {/* Added min-height */}
+      <div className="p-4 md:p-6 min-h-[200px]">
         <DemoMessage
           username="User123"
-          message="/tip @friendUser 5 RLUSD" // Command format example
-          delay={0.5} // Animation delay after container visible
+          message="/tip @friendUser 5 RLUSD"
+          delay={0.5}
         />
 
         <DemoResponse
           botName="RippleTip"
           message="Transaction confirmed! Sent 5 RLUSD to @friendUser."
-          delay={1.2} // Staggered delay
+          delay={1.2}
         />
 
         <DemoNotification
           content="💰 Transaction Successful!"
           detail="5 RLUSD • Remaining Balance: 23.5 RLUSD"
-          delay={1.8} // Staggered delay
+          delay={1.8}
         />
       </div>
     </motion.div>

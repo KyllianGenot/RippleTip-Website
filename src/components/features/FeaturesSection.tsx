@@ -1,4 +1,3 @@
-// src/components/features/FeaturesSection.tsx
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FEATURES_LIST } from '../../constants';

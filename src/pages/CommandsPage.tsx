@@ -68,7 +68,6 @@ const CommandsPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-24 max-w-6xl mt-16">
-      {/* Page Header */}
       <motion.div
         className="flex flex-col items-start mb-12 max-w-xl lg:max-w-2xl mx-auto"
         variants={containerVariants}
@@ -98,7 +97,6 @@ const CommandsPage = () => {
           Explore all available commands for RippleTip bot and enhance your Discord experience
         </motion.p>
 
-        {/* Updated Search Input Field - Cleaner Design */}
         <motion.div variants={itemVariants} className="w-full mb-8">
           <div className="relative">
             <input
@@ -121,7 +119,6 @@ const CommandsPage = () => {
         </motion.div>
       </motion.div>
 
-      {/* Conditional Rendering */}
       {filteredCommands.length === 0 ? (
         <motion.div
           className={`text-center py-16 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}

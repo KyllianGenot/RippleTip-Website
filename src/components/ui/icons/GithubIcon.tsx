@@ -1,4 +1,3 @@
-// src/components/ui/icons/GithubIcon.tsx
 import React from 'react';
 
 interface GithubIconProps {

@@ -87,12 +87,10 @@ const Header = () => {
     >
       <div className="container mx-auto px-6 max-w-screen-xl relative">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
             <Logo />
           </div>
 
-          {/* Navigation Bureau */}
           <nav className="hidden md:flex items-center justify-center absolute left-1/2 transform -translate-x-1/2">
             <div className="flex items-center space-x-6 lg:space-x-8">
               <NavLink to="/" className={getDesktopNavLinkClass}>
@@ -104,14 +102,12 @@ const Header = () => {
             </div>
           </nav>
 
-          {/* Actions Droite */}
           <div className="flex items-center flex-shrink-0 space-x-4 sm:space-x-5">
             <ThemeToggleButton
               className={isScrolled ? '' : `${getTransparentHeaderTextColor()} focus:ring-white/50`}
             />
             <AddBotButton className="hidden lg:inline-flex" />
 
-            {/* Bouton Menu Mobile */}
             <div className="md:hidden">
               <button
                 onClick={toggleMobileMenu}
@@ -136,7 +132,6 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Panneau Menu Mobile */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div

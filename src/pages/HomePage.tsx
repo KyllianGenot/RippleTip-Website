@@ -1,21 +1,12 @@
-// src/pages/HomePage.tsx
-// Corrected imports
-import {
-  FeaturesSection,
-  HowItWorksSection,
-  CallToActionSection
-} from '../components/features'; // Path likely correct if features is sibling to pages
-
-import { AnimatedSection } from '../components/ui'; // Go up one level, then into components/ui
-import { HeroSection } from '../components/features'; // Go up one level, then into components/hero
+import { FeaturesSection, HowItWorksSection, CallToActionSection } from '../components/features';
+import { AnimatedSection } from '../components/ui';
+import { HeroSection } from '../components/features';
 
 const HomePage = () => {
   return (
     <div>
-      {/* Use the new HeroSection */}
       <HeroSection />
 
-      {/* The rest of the page remains wrapped in AnimatedSection */}
       <AnimatedSection>
         <FeaturesSection />
       </AnimatedSection>

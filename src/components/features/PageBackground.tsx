@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useTheme } from '../../hooks';
 
 export const PageBackground: React.FC = () => {
@@ -9,12 +9,9 @@ export const PageBackground: React.FC = () => {
 
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden -z-10">
-      {/* Solid base background - fills exactly the page content */}
       <div className={`absolute inset-0 w-full h-full transition-colors duration-300 ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`} />
 
-      {/* Container for animated blobs */}
       <div className="absolute inset-0 w-full h-full">
-        {/* Blob 1 - Cyan/Blue (top left) */}
         <div
           className={`${blobBaseClasses} w-1/3 aspect-square -top-[5%] left-[10%] animation-delay-none ${
             isDarkMode ? 'bg-cyan-900' : 'bg-cyan-200'
@@ -22,7 +19,6 @@ export const PageBackground: React.FC = () => {
           style={{ animationDuration: '15s' }}
         />
 
-        {/* Blob 2 - Indigo/Violet (top right) */}
         <div
           className={`${blobBaseClasses} w-1/4 aspect-square top-[15%] right-[15%] animation-delay-2000 ${
             isDarkMode ? 'bg-indigo-900' : 'bg-indigo-300'
@@ -30,7 +26,6 @@ export const PageBackground: React.FC = () => {
           style={{ animationDuration: '18s' }}
         />
 
-        {/* Blob 3 - Purple/Pink (middle left) */}
         <div
           className={`${blobBaseClasses} w-2/5 aspect-square top-[40%] left-[20%] animation-delay-4000 opacity-35 dark:opacity-20 ${
             isDarkMode ? 'bg-purple-950' : 'bg-purple-200'
@@ -38,7 +33,6 @@ export const PageBackground: React.FC = () => {
           style={{ animationDuration: '16s' }}
         />
 
-        {/* Blob 4 - Dark Blue/Light Blue (middle right) */}
         <div
           className={`${blobBaseClasses} w-1/3 aspect-square top-[60%] right-[25%] animation-delay-1000 opacity-30 dark:opacity-15 ${
             isDarkMode ? 'bg-blue-950' : 'bg-blue-200'
@@ -46,7 +40,6 @@ export const PageBackground: React.FC = () => {
           style={{ animationDuration: '17s' }}
         />
 
-        {/* Blob 5 - Subtle Green (bottom left) */}
         <div
           className={`${blobBaseClasses} w-1/4 aspect-square bottom-[5%] left-[15%] animation-delay-3000 opacity-25 dark:opacity-10 ${
             isDarkMode ? 'bg-emerald-900' : 'bg-emerald-200'

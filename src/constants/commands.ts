@@ -1,5 +1,4 @@
-// src/constants/commands.ts
-import type { BotCommand } from '../types'; // Use index import if created
+import type { BotCommand } from '../types';
 
 export const SAMPLE_COMMANDS: BotCommand[] = [
   {
@@ -29,5 +28,4 @@ export const SAMPLE_COMMANDS: BotCommand[] = [
     description: 'Get your deposit address.',
     category: 'Core',
   },
-  // Add more commands as needed
 ];

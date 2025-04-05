@@ -10,7 +10,7 @@ export default {
   theme: {
     extend: {
       backdropBlur: {
-        '4xl': '40px', // Flou très intense
+        '4xl': '40px',
       },
     },
   },

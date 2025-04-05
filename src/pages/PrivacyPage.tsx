@@ -1,12 +1,10 @@
-// src/pages/PrivacyPage.tsx
-
 const PrivacyPage = () => {
     return (
-      <div className="container mx-auto px-4 py-8 max-w-3xl pt-20 md:pt-24"> {/* Limit width */}
+      <div className="container mx-auto px-4 py-8 max-w-3xl pt-20 md:pt-24">
         <h1 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
           Privacy Policy
         </h1>
-        <div className="prose dark:prose-invert max-w-none space-y-4 text-gray-700 dark:text-gray-300"> {/* Basic prose styling */}
+        <div className="prose dark:prose-invert max-w-none space-y-4 text-gray-700 dark:text-gray-300">
           <p>
             Your privacy is important to us. It is RippleTip's policy to respect your privacy regarding any information we may collect from you across our website, and other sites we own and operate, as well as our Discord bot.
           </p>
@@ -21,7 +19,6 @@ const PrivacyPage = () => {
           <p>
             Specifically for the Discord bot, we may store your Discord User ID, server IDs where the bot is used, and transaction data related to tips. We do not store message content unrelated to bot commands.
           </p>
-          {/* --- Add more placeholder or actual content below --- */}
            <p>[...]</p>
            <p>
             <strong>Last Updated:</strong> [Date]

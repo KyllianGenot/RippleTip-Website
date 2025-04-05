@@ -1,7 +1,6 @@
-// src/components/ui/AddBotButton.tsx
 import React from 'react';
 import Button from './Button';
-import { DiscordIcon } from './icons'; // Chemin corrigé
+import { DiscordIcon } from './icons';
 import { BOT_INVITE_LINK } from '../../constants';
 
 interface AddBotButtonProps {

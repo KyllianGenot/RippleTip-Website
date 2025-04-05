@@ -1,8 +1,7 @@
-// src/components/ui/Button.tsx
 import React, { useRef, useEffect } from 'react';
 import { Link, LinkProps } from 'react-router-dom';
 
-type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'discord';
+type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'discord' | 'gradient-blue'; // Added new variant
 type ButtonSize = 'sm' | 'md' | 'lg';
 
 type BaseButtonProps = {
@@ -15,9 +14,19 @@ type BaseButtonProps = {
   iconRight?: React.ReactNode;
 };
 
-type ButtonProps = BaseButtonProps & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'className' | 'children'> & { as?: 'button' };
-type AnchorProps = BaseButtonProps & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'className' | 'children'> & { as: 'a' };
-type LinkButtonProps = BaseButtonProps & Omit<LinkProps, 'className' | 'to' | 'children'> & { as: typeof Link, to: LinkProps['to'] };
+type ButtonProps = BaseButtonProps &
+  Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'className' | 'children'> & {
+    as?: 'button';
+  };
+type AnchorProps = BaseButtonProps &
+  Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'className' | 'children'> & {
+    as: 'a';
+  };
+type LinkButtonProps = BaseButtonProps &
+  Omit<LinkProps, 'className' | 'to' | 'children'> & {
+    as: typeof Link;
+    to: LinkProps['to'];
+  };
 
 type Props = ButtonProps | AnchorProps | LinkButtonProps;
 
@@ -40,19 +49,15 @@ const Button = ({
     if (!button || !shine) return;
 
     const handleMouseEnter = () => {
-      // Réinitialiser l'état initial
       shine.style.opacity = '1';
       shine.style.transform = 'translateX(-100%) skewX(-25deg)';
 
-      // Calculer la largeur du bouton
       const buttonWidth = button.offsetWidth;
-      // La distance totale à parcourir : largeur du bouton + largeur de shine-effect (60px)
-      const shineWidth = 60; // Correspond à la largeur définie dans CSS
+      const shineWidth = 60;
       const distanceToTravel = buttonWidth + shineWidth;
 
-      // Animer l'effet de shine
       let start: number | null = null;
-      const duration = 750; // 0.75s, comme dans l'animation CSS d'origine
+      const duration = 750;
 
       const animate = (timestamp: number) => {
         if (!start) start = timestamp;
@@ -64,7 +69,6 @@ const Button = ({
         if (progress < 1) {
           requestAnimationFrame(animate);
         } else {
-          // Réinitialiser l'opacité à la fin
           shine.style.opacity = '0';
         }
       };
@@ -117,22 +121,39 @@ const Button = ({
       hover:from-[#4752C4] hover:to-[#5865F2] focus:ring-[#5865F2]/50
       dark:border-[#6a75f3]/30
     `,
+    'gradient-blue': `
+      bg-gradient-to-r from-cyan-400 to-blue-600 text-white border-cyan-500/30
+      hover:from-cyan-500 hover:to-blue-700 focus:ring-blue-500
+      dark:from-cyan-300 dark:to-blue-500 dark:border-cyan-400/30
+      dark:hover:from-cyan-400 dark:hover:to-blue-600
+    `,
   };
 
   const combinedClasses = `${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${className}`;
 
   return (
-    <Component ref={buttonRef} className={combinedClasses} {...props as any}>
-      <span ref={shineRef} className="shine-effect pointer-events-none absolute left-[-200%] top-0 w-[60px] h-[200%]"></span>
+    <Component ref={buttonRef} className={combinedClasses} {...(props as any)}>
+      <span
+        ref={shineRef}
+        className="shine-effect pointer-events-none absolute left-[-200%] top-0 w-[60px] h-[200%]"
+      ></span>
       <span className="relative z-[1] inline-flex items-center">
         {iconLeft && (
-          <span className={`flex-shrink-0 ${size === 'lg' ? 'mr-2' : size === 'md' ? 'mr-1.5' : 'mr-1'}`}>
+          <span
+            className={`flex-shrink-0 ${
+              size === 'lg' ? 'mr-2' : size === 'md' ? 'mr-1.5' : 'mr-1'
+            }`}
+          >
             {iconLeft}
           </span>
         )}
         <span className="leading-none">{children}</span>
         {iconRight && (
-          <span className={`flex-shrink-0 transition-transform duration-300 group-hover:translate-x-1 ${size === 'lg' ? 'ml-2' : size === 'md' ? 'ml-1.5' : 'ml-1'}`}>
+          <span
+            className={`flex-shrink-0 transition-transform duration-300 group-hover:translate-x-1 ${
+              size === 'lg' ? 'ml-2' : size === 'md' ? 'ml-1.5' : 'ml-1'
+            }`}
+          >
             {iconRight}
           </span>
         )}

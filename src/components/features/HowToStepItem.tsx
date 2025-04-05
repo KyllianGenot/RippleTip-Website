@@ -21,7 +21,6 @@ export const HowToStepItem: React.FC<HowToStepItemProps> = ({
   const [isHovering, setIsHovering] = useState(false);
   const [isNumberHovering, setIsNumberHovering] = useState(false);
 
-  // Glow Effect
   const glowX = useMotionValue<number>(0);
   const glowY = useMotionValue<number>(0);
 
@@ -60,7 +59,6 @@ export const HowToStepItem: React.FC<HowToStepItemProps> = ({
     setIsHovering(false);
   };
 
-  // Numéro style avec transition fluide
   const numberShadowStyle = {
     boxShadow: isNumberHovering
       ? isDarkMode 
@@ -79,7 +77,6 @@ export const HowToStepItem: React.FC<HowToStepItemProps> = ({
         isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'
       }`}
     >
-      {/* Content Side */}
       <div className={`w-full lg:w-5/12 ${isEven ? 'lg:pr-16' : 'lg:pl-16'}`}>
         <motion.div
           ref={cardRef}
@@ -98,7 +95,6 @@ export const HowToStepItem: React.FC<HowToStepItemProps> = ({
           onMouseLeave={handleMouseLeave}
           whileHover={{ y: -5 }}
         >
-          {/* Glow Effect - Now controlled by glowStyle */}
           <div
             className="feature-card-glow absolute inset-0 pointer-events-none z-0"
             style={glowStyle}
@@ -120,7 +116,6 @@ export const HowToStepItem: React.FC<HowToStepItemProps> = ({
         </motion.div>
       </div>
 
-      {/* Center Number Badge - Now with smooth transition */}
       <div className="flex items-center justify-center w-full lg:w-2/12 my-6 lg:my-0">
         <div
           className={`relative flex items-center justify-center h-20 w-20 rounded-full z-10 ${
@@ -140,10 +135,8 @@ export const HowToStepItem: React.FC<HowToStepItemProps> = ({
         </div>
       </div>
 
-      {/* Empty Side (for balance) */}
       <div className="hidden lg:block lg:w-5/12"></div>
       
-      {/* Mobile Timeline Connector - Repositioned here, after the content and badge */}
       {!isLast && (
         <div className={`absolute left-1/2 transform -translate-x-1/2 w-0.5 h-20 top-full mt-6 bg-gradient-to-b ${
           isDarkMode ? 'from-cyan-700 to-blue-600' : 'from-cyan-300 to-blue-400'

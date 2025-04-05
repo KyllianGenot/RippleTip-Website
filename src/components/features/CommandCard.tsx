@@ -108,13 +108,12 @@ const CommandCard = ({ command, index = 0 }: CommandCardProps) => {
       className={`relative overflow-hidden rounded-xl border transition-all duration-300 ${
         isDarkMode
           ? 'bg-gray-800/40 border-gray-700/50 hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/10'
-          : 'bg-gray-100 border-gray-200/50 hover:border-blue-400/30 hover:shadow-lg hover:shadow-gray-200/70'
+          : 'bg-gray-50 border-gray-200/50 hover:border-blue-400/30 hover:shadow-lg hover:shadow-gray-200/70'
       } p-6`}
       style={glowStyle}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Glow Effect */}
       <div
         className={`absolute pointer-events-none inset-0 opacity-0 transition-opacity duration-300 mix-blend-soft-light ${
           isHovering ? 'opacity-100' : ''
@@ -126,9 +125,7 @@ const CommandCard = ({ command, index = 0 }: CommandCardProps) => {
         }}
       />
 
-      {/* Command Content */}
       <div className="relative z-10 flex flex-col h-full">
-        {/* Updated Category Tag - Cleaner Design */}
         <div
           className={`text-xs font-medium inline-flex items-center px-2 py-0.5 rounded-md border ${getCommandColor()} mb-4 self-start`}
         >

@@ -1,4 +1,3 @@
-// src/constants/howItWorks.ts
 export interface HowToStep {
   step: number;
   title: string;

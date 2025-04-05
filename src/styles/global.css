@@ -1,4 +1,3 @@
-/* src/styles/global.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,33 +6,25 @@ body {
   @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-200;
 }
 
-/* Keyframes pour l'animation des blobs de fond */
 @keyframes blob {
   0% {
     transform: translate(0px, 0px) scale(1);
   }
   33% {
-    /* Mouvement vers une autre position, légèrement redimensionné */
     transform: translate(40px, -60px) scale(1.1);
   }
   66% {
-     /* Mouvement vers une troisième position */
     transform: translate(-30px, 30px) scale(0.9);
   }
   100% {
-     /* Retour à la position initiale */
     transform: translate(0px, 0px) scale(1);
   }
 }
 
-/* Application de l'animation */
 .animate-blob {
-  /* animation-duration est défini via inline style dans le composant */
-  /* animation-delay est défini via les classes Tailwind ou inline style */
   animation: blob ease-in-out infinite;
 }
 
-/* Classes de délai d'animation (Tailwind les génère souvent, mais on les ajoute pour être sûr) */
 .animation-delay-none { animation-delay: 0s; }
 .animation-delay-1000 { animation-delay: 1s; }
 .animation-delay-2000 { animation-delay: 2s; }
@@ -65,19 +56,14 @@ body {
   );
 }
 
-/* Variables CSS pour la lueur des cartes FeatureItem */
 :root {
-  /* Couleurs de base */
-  --glow-color-light-rgb: 99, 102, 241; /* RGB pour Indigo 500 */
-  --glow-color-dark-rgb: 129, 140, 248; /* RGB pour Indigo 400 */
-  /* Opacité */
+  --glow-color-light-rgb: 99, 102, 241;
+  --glow-color-dark-rgb: 129, 140, 248;
   --glow-opacity-light: 0.10;
   --glow-opacity-dark: 0.08;
-  /* Taille du halo central - réduite pour être plus subtile */
-  --glow-size: 300px; /* Taille en pixels */
+  --glow-size: 300px;
 }
 
-/* Appliquer les couleurs spécifiques au thème */
 html:not(.dark) {
   --glow-color-rgb: var(--glow-color-light-rgb);
   --glow-opacity: var(--glow-opacity-light);
@@ -88,20 +74,15 @@ html.dark {
   --glow-opacity: var(--glow-opacity-dark);
 }
 
-/* Classe pour appliquer le style de fond de la lueur */
 .feature-card-glow {
   background: radial-gradient(
-    /* Taille du cercle basée sur la variable */
     circle var(--glow-size) at var(--glow-x, 50%) var(--glow-y, 50%),
-    /* Couleur et opacité basées sur les variables */
     rgba(var(--glow-color-rgb), var(--glow-opacity)),
-    /* Transition vers transparent */
-    transparent 80% /* Le halo s'estompe après 80% du rayon */
+    transparent 80%
   );
   transition: opacity 0.3s ease-out;
 }
 
-/* Amélioration pour les cartes de fonctionnalités */
 .feature-card {
   will-change: transform, box-shadow;
   transform: translateZ(0);
@@ -109,20 +90,19 @@ html.dark {
 }
 
 .icon-gradient-dark {
-  background: linear-gradient(to bottom right, #06b6d4, #2563eb); /* cyan-500 to blue-600 */
+  background: linear-gradient(to bottom right, #06b6d4, #2563eb);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .icon-gradient-light {
-  background: linear-gradient(to bottom right, #22d3ee, #3b82f6); /* cyan-400 to blue-500 */
+  background: linear-gradient(to bottom right, #22d3ee, #3b82f6);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-/* Keyframes pour l'animation de la bordure (Optionnel) */
 @keyframes border-spin {
   100% { transform: rotate(360deg); }
 }

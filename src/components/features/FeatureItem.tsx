@@ -16,9 +16,8 @@ export const FeatureItem: React.FC<FeatureItemProps> = ({ feature, index = 0 }) 
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
 
-  // Glow Effect
-  const glowX = useMotionValue<number>(0); // Corrected import usage
-  const glowY = useMotionValue<number>(0); // Corrected import usage
+  const glowX = useMotionValue<number>(0);
+  const glowY = useMotionValue<number>(0);
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30, scale: 0.97 },
@@ -73,7 +72,6 @@ export const FeatureItem: React.FC<FeatureItemProps> = ({ feature, index = 0 }) 
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Effet de Lueur */}
       <motion.div
         className="feature-card-glow absolute inset-0 pointer-events-none z-0"
         style={glowStyle}
@@ -81,7 +79,6 @@ export const FeatureItem: React.FC<FeatureItemProps> = ({ feature, index = 0 }) 
         transition={{ duration: 0.3 }}
       />
 
-      {/* Contenu de la carte */}
       <div className="relative z-10 flex flex-col items-center text-center">
         {IconComponent && (
           <motion.div

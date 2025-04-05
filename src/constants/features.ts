@@ -1,10 +1,8 @@
-// src/constants/features.ts
 import type React from 'react';
-// Import specific icons from react-icons/hi2 (Heroicons v2)
 import {
-  HiOutlineRocketLaunch,     // For 'Quick Setup' (represents speed and launch)
-  HiOutlineLockClosed,       // For 'Secure Transactions' (represents security)
-  HiOutlineBanknotes,        // For 'No Gas Fees' (represents money without fees)
+  HiOutlineRocketLaunch,
+  HiOutlineLockClosed,
+  HiOutlineBanknotes,
 } from 'react-icons/hi2';
 
 export interface FeatureInfo {

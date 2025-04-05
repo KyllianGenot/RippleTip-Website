@@ -1,4 +1,3 @@
-// src/components/features/hero/HeroContent.tsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '../ui';
@@ -12,18 +11,13 @@ export const HeroContent: React.FC = () => {
   const { theme } = useTheme();
   const isDarkMode = theme === 'dark';
 
-  const containerVariants = { /* ... */ };
-  const itemVariants = { /* ... */ };
-
   return (
     <motion.div
       className="flex flex-col items-start max-w-xl lg:max-w-2xl"
-      variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
       <motion.h1
-        variants={itemVariants}
         className={`text-left text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-6 tracking-tight ${
           isDarkMode ? 'text-white' : 'text-gray-900'
         }`}
@@ -36,7 +30,6 @@ export const HeroContent: React.FC = () => {
       </motion.h1>
 
       <motion.p
-        variants={itemVariants}
         className={`text-left text-lg md:text-xl lg:text-2xl mb-8 ${
           isDarkMode ? 'text-gray-300' : 'text-gray-600'
         }`}
@@ -49,7 +42,6 @@ export const HeroContent: React.FC = () => {
       </motion.p>
 
       <motion.div
-        variants={itemVariants}
         className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-start"
       >
         <Button
