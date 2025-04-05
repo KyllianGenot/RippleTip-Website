@@ -58,7 +58,9 @@ const Header = () => {
 
   const getMobileNavLinkClass = ({ isActive }: { isActive: boolean }): string => {
     const base = 'block px-4 py-3 rounded-lg text-base font-medium transition-all duration-300 transform hover:-translate-y-0.5';
-    const active = 'bg-indigo-50 text-indigo-600 dark:bg-indigo-900/30 dark:text-indigo-400 shadow-sm';
+    const active = isDarkMode
+      ? 'bg-blue-500/20 text-blue-400 shadow-sm'
+      : 'bg-cyan-50 text-cyan-600 shadow-sm';
     const inactive = 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800';
     return `${base} ${isActive ? active : inactive}`;
   };
