@@ -1,4 +1,3 @@
-// src/components/layout/Header.tsx
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ThemeToggleButton, Logo, AddBotButton } from '../ui';
@@ -90,16 +89,22 @@ const Header = () => {
           </div>
 
           {/* Navigation Bureau */}
-          <nav className="hidden md:flex flex-grow items-center justify-center px-8">
+          <nav className="hidden md:flex items-center justify-center absolute left-1/2 transform -translate-x-1/2">
             <div className="flex items-center space-x-6 lg:space-x-8">
-              <NavLink to="/" className={getDesktopNavLinkClass}>Home</NavLink>
-              <NavLink to="/commands" className={getDesktopNavLinkClass}>Commands</NavLink>
+              <NavLink to="/" className={getDesktopNavLinkClass}>
+                Home
+              </NavLink>
+              <NavLink to="/commands" className={getDesktopNavLinkClass}>
+                Commands
+              </NavLink>
             </div>
           </nav>
 
           {/* Actions Droite */}
           <div className="flex items-center flex-shrink-0 space-x-4 sm:space-x-5">
-            <ThemeToggleButton className={isScrolled ? '' : `${getTransparentHeaderTextColor()} focus:ring-white/50`} />
+            <ThemeToggleButton
+              className={isScrolled ? '' : `${getTransparentHeaderTextColor()} focus:ring-white/50`}
+            />
             <AddBotButton className="hidden lg:inline-flex" />
 
             {/* Bouton Menu Mobile */}
@@ -132,7 +137,7 @@ const Header = () => {
         {isMobileMenuOpen && (
           <motion.div
             id="mobile-menu"
-            className="md:hidden absolute top-full left-0 right-0 shadow-xl transition-all duration-300 ease-in-out border-t border-gray-200/80 dark:border-gray-700/50 overflow-hidden bg-white dark:bg-gray-900 backdrop-blur-[40px]" // Fond opaque et giga flou
+            className="md:hidden absolute top-full left-0 right-0 shadow-xl transition-all duration-300 ease-in-out border-t border-gray-200/80 dark:border-gray-700/50 overflow-hidden bg-white dark:bg-gray-900 backdrop-blur-[40px]"
             initial={{ maxHeight: 0, opacity: 0, y: -16 }}
             animate={{ maxHeight: 'calc(100vh - 4rem)', opacity: 1, y: 0 }}
             exit={{ maxHeight: 0, opacity: 0, y: -16 }}
