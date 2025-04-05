@@ -1,53 +1,56 @@
 // src/components/layout/Footer.tsx
+import React from 'react'; // Importer React
 import { Link } from 'react-router-dom';
-import { DiscordIcon } from '../ui/icons'; // Adjust path if needed
+import { useTheme } from '../../hooks'; // Pour le thème (même si non utilisé directement ici, bon à avoir)
 
-const Footer = () => {
+export const Footer: React.FC = () => { // Exportation nommée pour cohérence
   const currentYear = new Date().getFullYear();
-  const DISCORD_SERVER_LINK = 'https://discord.gg/YOUR_INVITE_CODE'; // TODO: Update
+
+  // Liste des liens essentiels
+  const footerLinks = [
+    { name: 'Commands', path: '/commands' },
+    { name: 'Privacy', path: '/privacy' },
+    { name: 'Terms', path: '/terms' },
+    // Ajoutez d'autres liens ici si nécessaire à l'avenir
+    // { name: 'Support', path: '/support' },
+  ];
 
   return (
-    <footer className="border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
-      <div className="container mx-auto px-4 py-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-600 dark:text-gray-400">
+    <footer className="border-t border-gray-200 dark:border-gray-700/50 bg-gray-50 dark:bg-gray-900">
+      {/* Pas de séparateur dégradé ici, juste une bordure simple */}
+      <div className="container mx-auto px-6 max-w-screen-xl py-8">
 
-        {/* Copyright */}
-        <div className="mb-4 md:mb-0 text-center md:text-left">
-          <p>© {currentYear} RippleTip. All rights reserved.</p>
+        {/* Structure unique : Flex sur mobile, puis Row sur md */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-8">
+
+          {/* Côté Gauche : Copyright */}
+          <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              © {currentYear} RippleTip.<br className="sm:hidden" /> All rights reserved. {/* Saut de ligne sur mobile */}
+            </p>
+          </div>
+
+          {/* Côté Droit : Liens */}
+           {/* Utilisation de nav pour la sémantique */}
+          <nav className="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2">
+            {footerLinks.map((item) => (
+              <Link
+                key={item.name}
+                to={item.path}
+                className="text-sm text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200"
+              >
+                {item.name}
+              </Link>
+            ))}
+            {/* Vous pourriez ajouter le lien Discord ici aussi si désiré */}
+            {/* <a href={DISCORD_LINK} target="_blank" ... >Discord</a> */}
+          </nav>
+
         </div>
-
-        {/* Links Section */}
-        <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
-          {/* --- Restored 'to' and 'className' props --- */}
-          <Link
-            to="/terms"
-            className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-          >
-            Terms of Service
-          </Link>
-          <Link
-            to="/privacy"
-            className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-          >
-            Privacy Policy
-          </Link>
-           {/* --- End Restoration --- */}
-
-          {/* External Links (Discord Server) */}
-          <a
-            href={DISCORD_SERVER_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Join our Discord server"
-            className="flex items-center space-x-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-          >
-            <DiscordIcon className="w-5 h-5" />
-            <span>Support Server</span>
-          </a>
-        </div>
-
       </div>
     </footer>
   );
 };
 
-export default Footer;
+// export { Footer }; // Exportation nommée si vous utilisez index.ts
+export default Footer; // Ou garder l'export par défaut si c'est votre convention pour ce fichier

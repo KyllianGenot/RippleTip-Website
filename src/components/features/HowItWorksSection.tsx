@@ -25,14 +25,16 @@ export const HowItWorksSection: React.FC = () => {
   };
 
   return (
-    <section ref={ref} className="relative py-20 md:py-28 overflow-hidden">
+    <section ref={ref} className="relative py-20 md:pt-28 md:pb-16 overflow-hidden">
       {/* Séparateur Dégradé */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 sm:w-1/2 md:w-1/3 lg:w-1/4 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-700 to-transparent" />
 
-      {/* Timeline Connector - Débute après le premier élément */}
-      <div className={`absolute left-1/2 transform -translate-x-1/2 top-60 bottom-40 w-0.5 ${
-        isDarkMode ? 'bg-gradient-to-b from-cyan-700 via-blue-600 to-cyan-700' : 'bg-gradient-to-b from-cyan-300 via-blue-400 to-cyan-300'
-      } hidden lg:block`} />
+      {/* Timeline Connector - Réduit l'espace en bas */}
+      <div
+        className={`absolute left-1/2 transform -translate-x-1/2 top-60 bottom-12 w-0.5 ${
+          isDarkMode ? 'bg-gradient-to-b from-cyan-700 via-blue-600 to-cyan-700' : 'bg-gradient-to-b from-cyan-300 via-blue-400 to-cyan-300'
+        } hidden lg:block`}
+      />
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.h2
@@ -51,10 +53,10 @@ export const HowItWorksSection: React.FC = () => {
           animate={inView ? 'visible' : 'hidden'}
         >
           {HOW_IT_WORKS_STEPS.map((step, index) => (
-            <HowToStepItem 
-              key={step.step} 
-              stepInfo={step} 
-              index={index} 
+            <HowToStepItem
+              key={step.step}
+              stepInfo={step}
+              index={index}
               isLast={index === HOW_IT_WORKS_STEPS.length - 1}
             />
           ))}
