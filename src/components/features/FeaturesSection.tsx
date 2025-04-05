@@ -1,14 +1,10 @@
 // src/components/features/FeaturesSection.tsx
-import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FEATURES_LIST } from '../../constants';
 import { FeatureItem } from './FeatureItem';
-import { useTheme } from '../../hooks';
 
 export const FeaturesSection: React.FC = () => {
-  const { theme } = useTheme();
-  const isDarkMode = theme === 'dark';
 
   const [ref, inView] = useInView({
     triggerOnce: true,

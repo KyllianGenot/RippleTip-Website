@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import AddBotButton from '../ui/AddBotButton';
 import { useTheme } from '../../hooks';
-import { BOT_INVITE_LINK } from '../../constants';
 
 const CallToActionSection: React.FC = () => {
   const { theme } = useTheme();
   const isDarkMode = theme === 'dark';
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
+  const [, setIsHovered] = useState(false);
 
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
 

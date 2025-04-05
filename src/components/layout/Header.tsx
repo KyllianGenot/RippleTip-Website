@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ThemeToggleButton, Logo, AddBotButton } from '../ui';
 import { HiOutlineBars3, HiOutlineXMark } from 'react-icons/hi2';

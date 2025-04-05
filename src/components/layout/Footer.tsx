@@ -1,7 +1,6 @@
 // src/components/layout/Footer.tsx
 import React from 'react'; // Importer React
 import { Link } from 'react-router-dom';
-import { useTheme } from '../../hooks'; // Pour le thème (même si non utilisé directement ici, bon à avoir)
 
 export const Footer: React.FC = () => { // Exportation nommée pour cohérence
   const currentYear = new Date().getFullYear();
