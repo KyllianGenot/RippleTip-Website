@@ -156,16 +156,16 @@ const CallToActionSection: React.FC = () => {
                   whileHover="hover"
                 >
                   <div
-                    className={`w-12 h-12 flex items-center justify-center rounded-full mb-3 ${
-                      isDarkMode ? 'bg-indigo-500/20 text-indigo-300' : 'bg-indigo-100 text-indigo-600'
+                    className={`w-12 h-12 flex items-center justify-center rounded-full mb-3 bg-gradient-to-r ${
+                      isDarkMode ? 'from-cyan-300 to-blue-500' : 'from-cyan-400 to-blue-600'
                     }`}
                   >
-                    <Icon size={24} strokeWidth={2.5} />
+                    <Icon size={24} strokeWidth={2.5} className="text-white" />
                   </div>
-                  <h3 className={`font-bold mb-2 ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>
+                  <h3 className={`font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                     {feature.text}
                   </h3>
-                  <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>{feature.description}</p>
+                  <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>{feature.description}</p>
                 </motion.div>
               );
             })}
