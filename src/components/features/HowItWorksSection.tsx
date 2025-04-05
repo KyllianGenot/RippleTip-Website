@@ -29,11 +29,11 @@ export const HowItWorksSection: React.FC = () => {
       {/* Séparateur Dégradé */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 sm:w-1/2 md:w-1/3 lg:w-1/4 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-700 to-transparent" />
 
-      {/* Timeline Connector - Réduit l'espace en bas */}
+      {/* Timeline Connector - Visible on all devices and starts from under the title */}
       <div
-        className={`absolute left-1/2 transform -translate-x-1/2 top-60 bottom-12 w-0.5 ${
+        className={`absolute left-1/2 transform -translate-x-1/2 top-40 sm:top-48 md:top-60 bottom-12 w-0.5 ${
           isDarkMode ? 'bg-gradient-to-b from-cyan-700 via-blue-600 to-cyan-700' : 'bg-gradient-to-b from-cyan-300 via-blue-400 to-cyan-300'
-        } hidden lg:block`}
+        }`}
       />
 
       <div className="container mx-auto px-4 relative z-10">
