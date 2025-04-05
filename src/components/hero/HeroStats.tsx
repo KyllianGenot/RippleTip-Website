@@ -26,7 +26,7 @@ export const HeroStats: React.FC = () => {
       decimals: 0
     },
     { 
-      label: "Unique Users in 3 Months", 
+      label: "Targeted Unique Users in 3 Months", 
       value: targetUsers,
       prefix: "",
       suffix: "",
