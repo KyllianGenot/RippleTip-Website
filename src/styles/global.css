@@ -1,0 +1,42 @@
+/* src/styles/global.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-200;
+}
+
+/* Keyframes pour l'animation des blobs de fond */
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    /* Mouvement vers une autre position, légèrement redimensionné */
+    transform: translate(40px, -60px) scale(1.1);
+  }
+  66% {
+     /* Mouvement vers une troisième position */
+    transform: translate(-30px, 30px) scale(0.9);
+  }
+  100% {
+     /* Retour à la position initiale */
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+/* Application de l'animation */
+.animate-blob {
+  /* animation-duration est défini via inline style dans le composant */
+  /* animation-delay est défini via les classes Tailwind ou inline style */
+  animation: blob ease-in-out infinite;
+}
+
+/* Classes de délai d'animation (Tailwind les génère souvent, mais on les ajoute pour être sûr) */
+.animation-delay-none { animation-delay: 0s; }
+.animation-delay-1000 { animation-delay: 1s; }
+.animation-delay-2000 { animation-delay: 2s; }
+.animation-delay-4000 { animation-delay: 4s; }
+
+/* Supprimez les anciennes keyframes (@keyframes float, @keyframes ripple) si elles ne sont plus utilisées */
