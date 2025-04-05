@@ -64,3 +64,51 @@ body {
     transparent
   );
 }
+
+/* Variables CSS pour la lueur des cartes FeatureItem */
+:root {
+  /* Couleurs de base */
+  --glow-color-light-rgb: 99, 102, 241; /* RGB pour Indigo 500 */
+  --glow-color-dark-rgb: 129, 140, 248; /* RGB pour Indigo 400 */
+  /* Opacité */
+  --glow-opacity-light: 0.10;
+  --glow-opacity-dark: 0.08;
+  /* Taille du halo central - réduite pour être plus subtile */
+  --glow-size: 300px; /* Taille en pixels */
+}
+
+/* Appliquer les couleurs spécifiques au thème */
+html:not(.dark) {
+  --glow-color-rgb: var(--glow-color-light-rgb);
+  --glow-opacity: var(--glow-opacity-light);
+}
+
+html.dark {
+  --glow-color-rgb: var(--glow-color-dark-rgb);
+  --glow-opacity: var(--glow-opacity-dark);
+}
+
+/* Classe pour appliquer le style de fond de la lueur */
+.feature-card-glow {
+  background: radial-gradient(
+    /* Taille du cercle basée sur la variable */
+    circle var(--glow-size) at var(--glow-x, 50%) var(--glow-y, 50%),
+    /* Couleur et opacité basées sur les variables */
+    rgba(var(--glow-color-rgb), var(--glow-opacity)),
+    /* Transition vers transparent */
+    transparent 80% /* Le halo s'estompe après 80% du rayon */
+  );
+  transition: opacity 0.3s ease-out;
+}
+
+/* Amélioration pour les cartes de fonctionnalités */
+.feature-card {
+  will-change: transform, box-shadow;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Keyframes pour l'animation de la bordure (Optionnel) */
+@keyframes border-spin {
+  100% { transform: rotate(360deg); }
+}
