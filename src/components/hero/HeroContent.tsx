@@ -41,7 +41,11 @@ export const HeroContent: React.FC = () => {
           isDarkMode ? 'text-gray-300' : 'text-gray-600'
         }`}
       >
-        The easiest, gas-fee free and most secure way to send Ripple's stablecoin directly within your Discord servers.
+        The easiest way to send Ripple's stablecoin directly within Discord servers - powered by{' '}
+        <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600 dark:from-cyan-400 dark:to-blue-500">
+          XRP Ledger
+        </span>
+        {' '}for gas-free, secure, and instant transactions.
       </motion.p>
 
       <motion.div
