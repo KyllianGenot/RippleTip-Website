@@ -1,17 +1,10 @@
+// src/components/CallToAction.tsx
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import AddBotButton from '../ui/AddBotButton';
 import { useTheme } from '../../hooks';
-import { FiZap, FiLock, FiHeadphones } from 'react-icons/fi';
-import { IconType } from 'react-icons';
-
-// Define an interface for feature items
-interface FeatureItem {
-  icon: IconType;
-  text: string;
-  description: string;
-}
+import { FEATURES_LIST, FeatureInfo } from '../../constants/features'; // Use existing features
 
 const CallToActionSection: React.FC = () => {
   const { theme } = useTheme();
@@ -78,25 +71,6 @@ const CallToActionSection: React.FC = () => {
     },
   };
 
-  // Features array with explicit typing
-  const features: FeatureItem[] = [
-    {
-      icon: FiZap,
-      text: 'Quick Setup Process',
-      description: 'Get started in minutes',
-    },
-    {
-      icon: FiLock,
-      text: 'Secure Transactions',
-      description: 'End-to-end encryption',
-    },
-    {
-      icon: FiHeadphones,
-      text: 'Responsive Support',
-      description: '24/7 assistance',
-    },
-  ];
-
   return (
     <section ref={ref} className="relative py-20 md:py-32 overflow-hidden" onMouseMove={handleMouseMove}>
       {/* Gradient separator at top */}
@@ -127,7 +101,7 @@ const CallToActionSection: React.FC = () => {
             className={`text-4xl md:text-5xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
             variants={titleVariants}
           >
-            Ready to Simplify <span className={isDarkMode ? 'text-indigo-300' : 'text-indigo-600'}>Discord Tipping</span>?
+            Ready to Simplify <span className={isDarkMode ? 'text-blue-300' : 'text-blue-600'}>Discord Tipping</span>?
           </motion.h2>
 
           <motion.p
@@ -139,8 +113,8 @@ const CallToActionSection: React.FC = () => {
 
           {/* Feature list with react-icons */}
           <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 max-w-3xl mx-auto" variants={textVariants}>
-            {features.map((feature, i) => {
-              const Icon = feature.icon;
+            {FEATURES_LIST.map((feature: FeatureInfo, i: number) => {
+              const Icon = feature.icon; // icon is optional, so we need to handle undefined
               return (
                 <motion.div
                   key={i}
@@ -155,15 +129,17 @@ const CallToActionSection: React.FC = () => {
                   animate={inView ? 'visible' : 'hidden'}
                   whileHover="hover"
                 >
-                  <div
-                    className={`w-12 h-12 flex items-center justify-center rounded-full mb-3 bg-gradient-to-r ${
-                      isDarkMode ? 'from-cyan-300 to-blue-500' : 'from-cyan-400 to-blue-600'
-                    }`}
-                  >
-                    <Icon size={24} strokeWidth={2.5} className="text-white" />
-                  </div>
+                  {Icon && (
+                    <div
+                      className={`w-12 h-12 flex items-center justify-center rounded-full mb-3 bg-gradient-to-r ${
+                        isDarkMode ? 'from-cyan-300 to-blue-500' : 'from-cyan-400 to-blue-600'
+                      }`}
+                    >
+                      <Icon size={24} className="text-white" />
+                    </div>
+                  )}
                   <h3 className={`font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                    {feature.text}
+                    {feature.title} {/* Changed from feature.text to feature.title */}
                   </h3>
                   <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>{feature.description}</p>
                 </motion.div>
@@ -184,7 +160,7 @@ const CallToActionSection: React.FC = () => {
             className={`text-sm max-w-xl mx-auto ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}
             variants={textVariants}
           >
-            Free to add to your server. Premium features available with subscription.
+            Free to add to your server.
           </motion.p>
         </div>
       </motion.div>

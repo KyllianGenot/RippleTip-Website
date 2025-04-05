@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { motion, useMotionValue } from 'framer-motion'; // Import useMotionValue directly
+import { motion, useMotionValue } from 'framer-motion';
 import type { FeatureInfo } from '../../constants';
 import { useTheme } from '../../hooks';
 
@@ -66,7 +66,7 @@ export const FeatureItem: React.FC<FeatureItemProps> = ({ feature, index = 0 }) 
       } backdrop-blur-sm ${
         isHovering
           ? isDarkMode
-            ? 'shadow-lg shadow-indigo-500/10'
+            ? 'shadow-lg shadow-blue-500/10'
             : 'shadow-lg shadow-gray-200/70'
           : ''
       }`}
@@ -90,12 +90,11 @@ export const FeatureItem: React.FC<FeatureItemProps> = ({ feature, index = 0 }) 
                 ? 'bg-gradient-to-br from-gray-700 to-gray-800'
                 : 'bg-gradient-to-br from-gray-50 to-gray-100'
             } shadow-sm`}
-            animate={{ scale: isHovering ? 1.05 : 1 }}
             transition={{ duration: 0.3 }}
           >
             <IconComponent
               className={`h-7 w-7 ${
-                isDarkMode ? 'text-cyan-500' : 'text-cyan-400'
+                isDarkMode ? 'text-blue-500' : 'text-blue-400'
               }`}
             />
           </motion.div>

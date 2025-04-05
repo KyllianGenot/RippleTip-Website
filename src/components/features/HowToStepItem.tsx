@@ -90,7 +90,7 @@ export const HowToStepItem: React.FC<HowToStepItemProps> = ({
           } backdrop-blur-md ${
             isHovering
               ? isDarkMode
-                ? 'hover:bg-gray-800 hover:border-gray-600/80 shadow-xl shadow-cyan-500/10'
+                ? 'hover:bg-gray-800 hover:border-gray-600/80 shadow-xl shadow-blue-500/10'
                 : 'hover:bg-white hover:border-gray-300 shadow-xl shadow-gray-200/70'
               : 'shadow-md'
           }`}
@@ -125,15 +125,15 @@ export const HowToStepItem: React.FC<HowToStepItemProps> = ({
         <div
           className={`relative flex items-center justify-center h-20 w-20 rounded-full z-10 ${
             isDarkMode 
-              ? 'bg-gray-800 border-3 border-cyan-500/80' 
-              : 'bg-white border-3 border-cyan-400/90'
+              ? 'bg-gray-800 border-3 border-blue-500/80' 
+              : 'bg-white border-3 border-blue-400/90'
           } transition-all duration-300 ease-out`}
           style={numberShadowStyle}
           onMouseEnter={() => setIsNumberHovering(true)}
           onMouseLeave={() => setIsNumberHovering(false)}
         >
           <span className={`text-3xl font-bold ${
-            isDarkMode ? 'text-cyan-400' : 'text-cyan-500'
+            isDarkMode ? 'text-blue-400' : 'text-blue-500'
           }`}>
             {stepInfo.step}
           </span>

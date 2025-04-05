@@ -9,12 +9,12 @@ export const PageBackground: React.FC = () => {
   const blobBaseClasses = 'absolute rounded-full filter blur-3xl opacity-40 dark:opacity-25 mix-blend-multiply dark:mix-blend-screen animate-blob';
 
   return (
-    <div className="absolute inset-0 w-full h-full overflow-hidden -z-10">
+    <div className="fixed inset-0 w-full min-h-screen -z-10">
       {/* Fond de base solide */}
       <div className={`absolute inset-0 w-full h-full transition-colors duration-300 ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`} />
 
       {/* Conteneur pour les blobs animés */}
-      <div className="relative w-full h-full">
+      <div className="relative w-full min-h-screen">
         {/* Blob 1 - Cyan/Bleu (haut gauche) */}
         <div
           className={`${blobBaseClasses} w-1/3 h-1/3 top-[5%] left-[10%] animation-delay-none ${
@@ -47,9 +47,9 @@ export const PageBackground: React.FC = () => {
           style={{ animationDuration: '17s' }}
         />
 
-        {/* Blob 5 - Vert subtil (bas gauche) */}
+        {/* Blob 5 - Vert subtil (bas gauche) - Adjusted position to avoid clipping */}
         <div
-          className={`${blobBaseClasses} w-1/4 h-1/4 top-[80%] left-[15%] animation-delay-3000 opacity-25 dark:opacity-10 ${
+          className={`${blobBaseClasses} w-1/4 h-1/4 top-[75%] left-[15%] animation-delay-3000 opacity-25 dark:opacity-10 ${
             isDarkMode ? 'bg-emerald-900' : 'bg-emerald-200'
           }`}
           style={{ animationDuration: '19s' }}

@@ -1,4 +1,3 @@
-// src/components/hero/HeroStats.tsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -13,27 +12,48 @@ export const HeroStats: React.FC = () => {
     threshold: 0.3 // Trigger when 30% is visible
   });
 
-  // Ensure stats values are numbers for CountUp
+  // Define target stats
+  const targetVolume = 500000; // Targeted volume in $
+  const targetUsers = 5000; // Targeted unique users onboarded in 3 months
+  const feePercentage = 2; // 2% fee
+  
   const stats = [
-    { label: "Active Servers", value: 3500 },
-    { label: "Tips Per Day", value: 12000 },
-    { label: "RLUSD Tipped (Total)", value: 250000 } // Changed label slightly
+    { 
+      label: "Targeted Volume Generated", 
+      value: targetVolume,
+      prefix: "$",
+      suffix: "",
+      decimals: 0
+    },
+    { 
+      label: "Unique Users in 3 Months", 
+      value: targetUsers,
+      prefix: "",
+      suffix: "",
+      decimals: 0
+    },
+    { 
+      label: "Success Fee", 
+      value: feePercentage,
+      prefix: "",
+      suffix: "%",
+      decimals: 0
+    }
   ];
 
-   // Variants for staggering animation
-   const containerVariants = {
-     hidden: { opacity: 0 },
-     visible: {
-       opacity: 1,
-       transition: { staggerChildren: 0.2, delayChildren: 0.1 } // Stagger children
-     }
-   };
+  // Variants for staggering animation
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2, delayChildren: 0.1 } // Stagger children
+    }
+  };
 
-   const itemVariants = {
-     hidden: { opacity: 0, y: 20 },
-     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
-   };
-
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+  };
 
   return (
     // Container with main animation trigger
@@ -43,7 +63,7 @@ export const HeroStats: React.FC = () => {
         isDarkMode ? 'bg-gray-800/60' : 'bg-white/80'
       } backdrop-blur-sm border ${
         isDarkMode ? 'border-gray-700/50' : 'border-gray-200/80'
-      } `}
+      }`}
       variants={containerVariants}
       initial="hidden"
       animate={inView ? 'visible' : 'hidden'}
@@ -64,13 +84,23 @@ export const HeroStats: React.FC = () => {
             >
               {/* Conditionally render CountUp only when in view */}
               {inView ? (
-                 <CountUp end={stat.value} duration={2.5} separator="," /> // Added separator
+                <>
+                  {stat.prefix}
+                  <CountUp
+                    end={stat.value}
+                    duration={2.5}
+                    separator=","
+                    decimals={stat.decimals}
+                  />
+                  {stat.suffix}
+                </>
               ) : (
-                 '0' // Show 0 before animation starts
+                `${stat.prefix}0${stat.suffix}` // Show initial value before animation
               )}
             </div>
             {/* Label */}
-            <p className={`text-sm md:text-base ${
+            <p
+              className={`text-sm md:text-base ${
                 isDarkMode ? 'text-gray-300' : 'text-gray-600'
               }`}
             >

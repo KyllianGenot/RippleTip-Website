@@ -2,12 +2,10 @@
 import type React from 'react';
 // Import specific icons from react-icons/hi2 (Heroicons v2)
 import {
-  HiOutlineSparkles,         // For 'Instant Tips'
-  HiOutlineCircleStack,      // For 'Easy Balance Checks' (alternative: HiOutlineWallet)
-  HiOutlineShieldCheck       // For 'Secure & Reliable'
+  HiOutlineRocketLaunch,     // For 'Quick Setup' (represents speed and launch)
+  HiOutlineLockClosed,       // For 'Secure Transactions' (represents security)
+  HiOutlineBanknotes,        // For 'No Gas Fees' (represents money without fees)
 } from 'react-icons/hi2';
-
-// No longer need to import the old placeholder components
 
 export interface FeatureInfo {
   title: string;
@@ -17,19 +15,18 @@ export interface FeatureInfo {
 
 export const FEATURES_LIST: FeatureInfo[] = [
   {
-    title: 'Instant Tips',
-    description: 'Send tips to any Discord user instantly using simple commands.',
-    icon: HiOutlineSparkles, // Use the imported icon component
+    title: 'Quick Setup',
+    description: 'Add RippleTip to your server and start tipping in minutes.',
+    icon: HiOutlineRocketLaunch,
   },
   {
-    title: 'Easy Balance Checks',
-    description: 'Quickly check your current balance anytime without leaving Discord.',
-    icon: HiOutlineCircleStack, // Use the imported icon component
+    title: 'No Gas Fees',
+    description: 'Send tips without worrying about transaction costs.',
+    icon: HiOutlineBanknotes,
   },
   {
-    title: 'Secure & Reliable',
-    description: 'Built with security in mind to ensure your tips are handled safely.',
-    icon: HiOutlineShieldCheck, // Use the imported icon component
+    title: 'Secure Transactions',
+    description: 'Enjoy safe tipping with end-to-end encryption.',
+    icon: HiOutlineLockClosed,
   },
-  // Add more features if needed, assigning appropriate icons
 ];
