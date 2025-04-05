@@ -45,11 +45,13 @@ const Header = () => {
 
   const getDesktopNavLinkClass = ({ isActive }: { isActive: boolean }): string => {
     const base = 'px-3 py-2 text-sm font-medium transition-colors duration-200 relative group';
-    const activeColor = 'text-indigo-600 dark:text-indigo-400';
+    const activeColor = isDarkMode ? 'text-blue-500' : 'text-cyan-600';
     const inactiveColor = isScrolled
-      ? 'text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400'
+      ? 'text-gray-700 dark:text-gray-300 hover:text-cyan-600 dark:hover:text-blue-500'
       : `${getTransparentHeaderTextColor()}`;
-    const underline = 'after:absolute after:left-0 after:-bottom-1.5 after:h-px after:bg-indigo-600 dark:after:bg-indigo-400 after:transition-transform after:duration-300 after:ease-out';
+    const underline = isDarkMode
+      ? 'after:absolute after:left-0 after:-bottom-1.5 after:h-px after:bg-blue-500 after:transition-transform after:duration-300 after:ease-out'
+      : 'after:absolute after:left-0 after:-bottom-1.5 after:h-px after:bg-cyan-600 after:transition-transform after:duration-300 after:ease-out';
     const activeUnderline = 'after:w-full after:scale-x-100';
     const inactiveUnderline = 'after:w-full after:scale-x-0 group-hover:after:scale-x-100 after:origin-left';
 
