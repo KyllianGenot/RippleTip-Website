@@ -108,6 +108,20 @@ html.dark {
   backface-visibility: hidden;
 }
 
+.icon-gradient-dark {
+  background: linear-gradient(to bottom right, #06b6d4, #2563eb); /* cyan-500 to blue-600 */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.icon-gradient-light {
+  background: linear-gradient(to bottom right, #22d3ee, #3b82f6); /* cyan-400 to blue-500 */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 /* Keyframes pour l'animation de la bordure (Optionnel) */
 @keyframes border-spin {
   100% { transform: rotate(360deg); }

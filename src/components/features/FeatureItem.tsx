@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { motion, useMotionValue, useSpring, useTransform, MotionValue } from 'framer-motion';
+import { motion, useMotionValue } from 'framer-motion'; // Import useMotionValue directly
 import type { FeatureInfo } from '../../constants';
 import { useTheme } from '../../hooks';
 
@@ -7,40 +7,6 @@ interface FeatureItemProps {
   feature: FeatureInfo;
   index?: number;
 }
-
-// Fonction de gestion du mouvement de la souris avec des types stricts
-const handleMouseMove = (
-  event: React.MouseEvent<HTMLDivElement>,
-  ref: React.RefObject<HTMLDivElement | null>, // Adjusted to allow null
-  mouseX: MotionValue<number>,
-  mouseY: MotionValue<number>,
-  glowX: MotionValue<number>,
-  glowY: MotionValue<number>,
-  setIsHovering: React.Dispatch<React.SetStateAction<boolean>>
-) => {
-  if (!ref.current) return;
-  const rect = ref.current.getBoundingClientRect();
-  
-  // Calcul des positions relatives et absolues
-  const relativeX = (event.clientX - rect.left) / rect.width;
-  const relativeY = (event.clientY - rect.top) / rect.height;
-  
-  mouseX.set(relativeX);
-  mouseY.set(relativeY);
-  glowX.set(event.clientX - rect.left);
-  glowY.set(event.clientY - rect.top);
-  setIsHovering(true);
-};
-
-const handleMouseLeave = (
-  mouseX: MotionValue<number>,
-  mouseY: MotionValue<number>,
-  setIsHovering: React.Dispatch<React.SetStateAction<boolean>>
-) => {
-  mouseX.set(0.5);
-  mouseY.set(0.5);
-  setIsHovering(false);
-};
 
 export const FeatureItem: React.FC<FeatureItemProps> = ({ feature, index = 0 }) => {
   const { theme } = useTheme();
@@ -50,29 +16,10 @@ export const FeatureItem: React.FC<FeatureItemProps> = ({ feature, index = 0 }) 
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
 
-  // --- Effet 3D Tilt ---
-  const mouseX = useMotionValue<number>(0.5);
-  const mouseY = useMotionValue<number>(0.5);
+  // Glow Effect
+  const glowX = useMotionValue<number>(0); // Corrected import usage
+  const glowY = useMotionValue<number>(0); // Corrected import usage
 
-  // Rotation avec Spring pour la carte - valeurs réduites pour un effet plus subtil
-  const cardRotateY = useSpring(
-    useTransform<number, number>(mouseX, [0, 1], [-8, 8]),
-    { stiffness: 300, damping: 30 }
-  );
-  const cardRotateX = useSpring(
-    useTransform<number, number>(mouseY, [0, 1], [6, -6]),
-    { stiffness: 300, damping: 30 }
-  );
-
-  // Contre-rotation pour l'icône, légèrement moins prononcée
-  const iconRotateY = useTransform<number, number>(mouseX, [0, 1], [8, -8]);
-  const iconRotateX = useTransform<number, number>(mouseY, [0, 1], [-6, 6]);
-
-  // Effet de Lueur (Spotlight)
-  const glowX = useMotionValue<number>(0);
-  const glowY = useMotionValue<number>(0);
-
-  // Variante pour l'animation d'entrée
   const itemVariants = {
     hidden: { opacity: 0, y: 30, scale: 0.97 },
     visible: {
@@ -88,11 +35,22 @@ export const FeatureItem: React.FC<FeatureItemProps> = ({ feature, index = 0 }) 
     },
   };
 
-  // Styles pour la lueur
   const glowStyle = {
     '--glow-x': `${glowX.get()}px`,
     '--glow-y': `${glowY.get()}px`,
   } as React.CSSProperties;
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    glowX.set(event.clientX - rect.left);
+    glowY.set(event.clientY - rect.top);
+    setIsHovering(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+  };
 
   return (
     <motion.div
@@ -112,15 +70,10 @@ export const FeatureItem: React.FC<FeatureItemProps> = ({ feature, index = 0 }) 
             : 'shadow-lg shadow-gray-200/70'
           : ''
       }`}
-      style={{
-        transformStyle: 'preserve-3d',
-        rotateX: cardRotateX,
-        rotateY: cardRotateY,
-      }}
-      onMouseMove={(e) => handleMouseMove(e, cardRef, mouseX, mouseY, glowX, glowY, setIsHovering)}
-      onMouseLeave={() => handleMouseLeave(mouseX, mouseY, setIsHovering)}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
     >
-      {/* Effet de Lueur utilisant la classe CSS existante */}
+      {/* Effet de Lueur */}
       <motion.div
         className="feature-card-glow absolute inset-0 pointer-events-none z-0"
         style={glowStyle}
@@ -131,31 +84,27 @@ export const FeatureItem: React.FC<FeatureItemProps> = ({ feature, index = 0 }) 
       {/* Contenu de la carte */}
       <div className="relative z-10 flex flex-col items-center text-center">
         {IconComponent && (
-          <div
+          <motion.div
             className={`mb-5 inline-flex items-center justify-center h-14 w-14 rounded-xl transition-all duration-300 ${
               isDarkMode
-                ? 'bg-gradient-to-br from-gray-700 to-gray-800 text-indigo-400 shadow-sm'
-                : 'bg-gradient-to-br from-gray-50 to-gray-100 text-indigo-600 shadow-sm'
-            } ${isHovering ? 'scale-105' : ''}`}
+                ? 'bg-gradient-to-br from-gray-700 to-gray-800'
+                : 'bg-gradient-to-br from-gray-50 to-gray-100'
+            } shadow-sm`}
+            animate={{ scale: isHovering ? 1.05 : 1 }}
+            transition={{ duration: 0.3 }}
           >
-            <motion.div
-              style={{
-                transformStyle: 'preserve-3d',
-                rotateX: iconRotateX,
-                rotateY: iconRotateY,
-              }}
-            >
-              <IconComponent className="h-7 w-7" />
-            </motion.div>
-          </div>
+            <IconComponent
+              className={`h-7 w-7 ${
+                isDarkMode ? 'text-cyan-500' : 'text-cyan-400'
+              }`}
+            />
+          </motion.div>
         )}
 
-        {/* Titre */}
         <h3 className={`text-lg font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
           {feature.title}
         </h3>
 
-        {/* Description */}
         <p className={`text-sm leading-relaxed ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
           {feature.description}
         </p>

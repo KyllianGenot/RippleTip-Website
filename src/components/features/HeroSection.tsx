@@ -1,7 +1,7 @@
 // src/components/features/HeroSection.tsx
 import React from 'react';
 // Import des sous-composants depuis le dossier hero
-import { HeroBackground, HeroContent, HeroTransactionDemo, HeroStats } from '../hero';
+import { HeroContent, HeroTransactionDemo, HeroStats } from '../hero';
 
 export const HeroSection: React.FC = () => {
   return (
@@ -9,8 +9,6 @@ export const HeroSection: React.FC = () => {
     // Ajuster le padding supérieur sur les grands écrans (lg:pt-36)
     // Réduire légèrement le padding inférieur sur mobile (pb-12)
     <section className="relative w-full min-h-screen overflow-hidden flex items-center pt-32 pb-12 md:pt-36 md:pb-16 lg:pb-20">
-      <HeroBackground />
-
       <div className="relative z-10 container mx-auto px-4 w-full">
         {/* Layout principal : Colonne par défaut, Ligne sur lg */}
         {/* Réduire l'espacement vertical (gap-10) sur mobile/tablette */}
