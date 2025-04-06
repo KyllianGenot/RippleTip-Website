@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { SAMPLE_COMMANDS } from '../constants';
+import { COMMANDS } from '../constants';
 import { CommandCard } from '../components/features';
 import type { BotCommand } from '../types';
 import { motion } from 'framer-motion';
@@ -15,10 +15,10 @@ const CommandsPage = () => {
 
   const filteredCommands = useMemo(() => {
     if (!searchTerm.trim()) {
-      return SAMPLE_COMMANDS;
+      return COMMANDS;
     }
     const lowerCaseSearchTerm = searchTerm.toLowerCase();
-    return SAMPLE_COMMANDS.filter(
+    return COMMANDS.filter(
       (command) =>
         command.name.toLowerCase().includes(lowerCaseSearchTerm) ||
         command.description.toLowerCase().includes(lowerCaseSearchTerm)

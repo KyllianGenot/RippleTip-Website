@@ -1,31 +1,58 @@
 import type { BotCommand } from '../types';
 
-export const SAMPLE_COMMANDS: BotCommand[] = [
+export const COMMANDS: BotCommand[] = [
   {
-    name: 'tip',
-    description: 'Sends a tip to another user.',
-    usage: 'tip <@user> <amount> [memo]',
-    category: 'Core',
+    name: 'create-wallet',
+    description: 'Create a new XRPL wallet and connect it to your Discord account.',
+    usage: '/create-wallet',
+    category: 'Wallet',
+  },
+  {
+    name: 'connect',
+    description: 'Connect an existing XRPL wallet to your Discord account.',
+    usage: '/connect <address> <seed>',
+    category: 'Wallet',
   },
   {
     name: 'balance',
-    description: 'Check your current balance.',
+    description: 'Check your RLUSD balance or that of another user.',
+    usage: '/balance [user]',
     category: 'Core',
+  },
+  {
+    name: 'wallet',
+    description: 'Display your or another user\'s wallet address and QR code.',
+    usage: '/wallet [user]',
+    category: 'Core',
+  },
+  {
+    name: 'tip',
+    description: 'Send RLUSD to a user or address.',
+    usage: '/tip <address|@user> <amount> [message]',
+    category: 'Transactions',
+  },
+  {
+    name: 'history',
+    description: 'View your RLUSD transaction history.',
+    usage: '/history [limit]',
+    category: 'Transactions',
+  },
+  {
+    name: 'relations',
+    description: 'View connected XRPL addresses of Discord users.',
+    usage: '/relations',
+    category: 'Utility',
+  },
+  {
+    name: 'leaderboard',
+    description: 'View the ranking of top RLUSD tippers and receivers.',
+    usage: '/leaderboard [limit]',
+    category: 'Statistics',
   },
   {
     name: 'help',
-    description: 'Shows a list of available commands or info about a specific command.',
-    usage: 'help [command_name]',
+    description: 'Display general help or help for a specific command.',
+    usage: '/help [command]',
     category: 'Utility',
-  },
-  {
-    name: 'ping',
-    description: 'Checks the bot\'s latency.',
-    category: 'Utility',
-  },
-   {
-    name: 'deposit',
-    description: 'Get your deposit address.',
-    category: 'Core',
   },
 ];
