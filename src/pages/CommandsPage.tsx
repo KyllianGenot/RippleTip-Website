@@ -36,7 +36,19 @@ const CommandsPage = () => {
     }, {} as Record<string, BotCommand[]>);
   }, [filteredCommands]);
 
-  const sortedCategories = useMemo(() => Object.keys(groupedCommands).sort(), [groupedCommands]);
+  const categoryOrder = [
+    'Basic Commands',
+    'Transactions',
+    'Relations',
+    'Statistics',
+    'Help',
+    'Uncategorized'
+  ];
+
+  const sortedCategories = useMemo(() => {
+    const availableCategories = Object.keys(groupedCommands);
+    return categoryOrder.filter(category => availableCategories.includes(category));
+  }, [groupedCommands]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);

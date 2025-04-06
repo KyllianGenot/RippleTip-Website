@@ -5,25 +5,25 @@ export const COMMANDS: BotCommand[] = [
     name: 'create-wallet',
     description: 'Create a new XRPL wallet and connect it to your Discord account.',
     usage: '/create-wallet',
-    category: 'Wallet',
+    category: 'Basic Commands',
   },
   {
     name: 'connect',
     description: 'Connect an existing XRPL wallet to your Discord account.',
     usage: '/connect <address> <seed>',
-    category: 'Wallet',
+    category: 'Basic Commands',
   },
   {
     name: 'balance',
     description: 'Check your RLUSD balance or that of another user.',
     usage: '/balance [user]',
-    category: 'Core',
+    category: 'Basic Commands',
   },
   {
     name: 'wallet',
     description: 'Display your or another user\'s wallet address and QR code.',
     usage: '/wallet [user]',
-    category: 'Core',
+    category: 'Basic Commands',
   },
   {
     name: 'tip',
@@ -41,7 +41,7 @@ export const COMMANDS: BotCommand[] = [
     name: 'relations',
     description: 'View connected XRPL addresses of Discord users.',
     usage: '/relations',
-    category: 'Utility',
+    category: 'Relations',
   },
   {
     name: 'leaderboard',
@@ -53,6 +53,6 @@ export const COMMANDS: BotCommand[] = [
     name: 'help',
     description: 'Display general help or help for a specific command.',
     usage: '/help [command]',
-    category: 'Utility',
+    category: 'Help',
   },
 ];
