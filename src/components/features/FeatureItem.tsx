@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { motion, useMotionValue } from 'framer-motion';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useMotionValue, useAnimation } from 'framer-motion';
 import type { FeatureInfo } from '../../constants';
 import { useTheme } from '../../hooks';
 
@@ -8,31 +8,40 @@ interface FeatureItemProps {
   index?: number;
 }
 
-export const FeatureItem: React.FC<FeatureItemProps> = ({ feature, index = 0 }) => {
+export const FeatureItem: React.FC<FeatureItemProps> = ({ 
+  feature, 
+  index = 0
+}) => {
   const { theme } = useTheme();
   const isDarkMode = theme === 'dark';
   const IconComponent = feature.icon;
-
+  const controls = useAnimation();
+  
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   const glowX = useMotionValue<number>(0);
   const glowY = useMotionValue<number>(0);
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.97 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { 
-        type: "spring",
-        stiffness: 100,
-        damping: 20,
-        delay: index * 0.1
-      },
-    },
-  };
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      controls.start({
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        transition: { 
+          type: "spring",
+          stiffness: 100,
+          damping: 20,
+          delay: index * 0.1
+        }
+      });
+      setHasAnimated(true);
+    }, 500);
+    
+    return () => clearTimeout(timeout);
+  }, [controls, index]);
 
   const glowStyle = {
     '--glow-x': `${glowX.get()}px`,
@@ -54,10 +63,8 @@ export const FeatureItem: React.FC<FeatureItemProps> = ({ feature, index = 0 }) 
   return (
     <motion.div
       ref={cardRef}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-50px" }}
-      variants={itemVariants}
+      initial={{ opacity: 0, y: 30, scale: 0.97 }}
+      animate={controls}
       className={`feature-card relative p-6 rounded-xl overflow-hidden transition-all duration-300 ${
         isDarkMode
           ? 'bg-gray-800/60 border border-gray-700/50'
@@ -71,6 +78,9 @@ export const FeatureItem: React.FC<FeatureItemProps> = ({ feature, index = 0 }) 
       }`}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      style={{ 
+        opacity: hasAnimated ? 1 : undefined 
+      }}
     >
       <motion.div
         className="feature-card-glow absolute inset-0 pointer-events-none z-0"
@@ -81,20 +91,19 @@ export const FeatureItem: React.FC<FeatureItemProps> = ({ feature, index = 0 }) 
 
       <div className="relative z-10 flex flex-col items-center text-center">
         {IconComponent && (
-          <motion.div
+          <div
             className={`mb-5 inline-flex items-center justify-center h-14 w-14 rounded-xl transition-all duration-300 ${
               isDarkMode
                 ? 'bg-gradient-to-br from-gray-700 to-gray-800'
                 : 'bg-gradient-to-br from-gray-50 to-gray-100'
             } shadow-sm`}
-            transition={{ duration: 0.3 }}
           >
             <IconComponent
               className={`h-7 w-7 ${
                 isDarkMode ? 'text-blue-500' : 'text-blue-400'
               }`}
             />
-          </motion.div>
+          </div>
         )}
 
         <h3 className={`text-lg font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>

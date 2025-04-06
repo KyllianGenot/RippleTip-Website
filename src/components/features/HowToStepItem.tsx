@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { motion, useMotionValue } from 'framer-motion';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useMotionValue, useAnimation } from 'framer-motion';
 import type { HowToStep } from '../../constants';
 import { useTheme } from '../../hooks';
 
@@ -16,6 +16,8 @@ export const HowToStepItem: React.FC<HowToStepItemProps> = ({
 }) => {
   const { theme } = useTheme();
   const isDarkMode = theme === 'dark';
+  const controls = useAnimation();
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
@@ -26,19 +28,23 @@ export const HowToStepItem: React.FC<HowToStepItemProps> = ({
 
   const isEven = index % 2 === 0;
 
-  const itemVariants = {
-    hidden: { opacity: 0, x: isEven ? -30 : 30 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { 
-        type: "spring",
-        stiffness: 100,
-        damping: 20,
-        delay: index * 0.1
-      },
-    },
-  };
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      controls.start({
+        opacity: 1,
+        x: 0,
+        transition: { 
+          type: "spring",
+          stiffness: 100,
+          damping: 20,
+          delay: index * 0.1
+        }
+      });
+      setHasAnimated(true);
+    }, 500);
+    
+    return () => clearTimeout(timeout);
+  }, [controls, index]);
 
   const glowStyle = {
     '--glow-x': `${glowX.get()}px`,
@@ -72,10 +78,14 @@ export const HowToStepItem: React.FC<HowToStepItemProps> = ({
 
   return (
     <motion.div
-      variants={itemVariants}
+      initial={{ opacity: 0, x: isEven ? -30 : 30 }}
+      animate={controls}
       className={`relative flex flex-col-reverse lg:flex-row items-center mb-20 ${isLast ? 'mb-0' : ''} ${
         isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'
       }`}
+      style={{ 
+        opacity: hasAnimated ? 1 : undefined 
+      }}
     >
       <div className={`w-full lg:w-5/12 ${isEven ? 'lg:pr-16' : 'lg:pl-16'}`}>
         <motion.div
