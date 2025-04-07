@@ -1,54 +1,109 @@
-# React + TypeScript + Vite
+# ✨ RippleTip Website ✨
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<div align="center">
+  <img src="logo_rippletip.png" alt="RippleTip Logo" width="200"/>
+  <p><em>The official showcase website for the RippleTip Discord Bot.</em></p>
+  <p>
+    <a href="https://rippletip.vercel.app/" target="_blank" rel="noopener noreferrer"><strong>Visit the Live Site →</strong></a>
+  </p>
+</div>
 
-Currently, two official plugins are available:
+## 🌐 Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This repository contains the source code for the official website of **RippleTip**, a powerful Discord bot enabling users to send and receive RLUSD tokens on the XRP Ledger (XRPL). This website serves as a landing page, feature showcase, and command reference for the bot.
 
-## Expanding the ESLint configuration
+The site is built with modern web technologies, focusing on performance, responsiveness, and a polished user experience.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+➡️ **Find the RippleTip Discord Bot repository here:** [https://github.com/RippleTip/rippletip-xrpl](https://github.com/RippleTip/rippletip-xrpl)
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 🚀 Website Key Features
+
+*   **Visually Engaging Hero Section:** With animated backgrounds to capture attention.
+*   **Detailed Feature Showcase:** Highlighting the bot's core functionalities with interactive elements.
+*   **"How It Works" Guide:** Clear, step-by-step instructions for users.
+*   **Comprehensive Commands Page:** Lists all bot commands, grouped by category, with a search/filter feature.
+*   **Responsive Design:** Adapts smoothly to all screen sizes, from mobile to desktop.
+*   **Light/Dark Theme:** User-selectable theme preference stored locally.
+*   **Smooth Animations:** Subtle animations on scroll and hover using Framer Motion.
+*   **Modern Stack:** Built with Vite, React, TypeScript, and Tailwind CSS for a fast and maintainable codebase.
+*   **Modular Structure:** Clearly organized components for easy maintenance and scalability.
+*   **Legal Pages:** Includes placeholders for Terms of Service and Privacy Policy.
+*   **404 Page:** Custom "Not Found" page for better user experience.
+
+## 🛠️ Tech Stack
+
+*   **Framework:** React (v19)
+*   **Build Tool:** Vite
+*   **Language:** TypeScript
+*   **Styling:** Tailwind CSS
+*   **Routing:** React Router DOM
+*   **Animation:** Framer Motion
+*   **Icons:** React Icons (Heroicons v2)
+*   **Deployment:** Vercel
+
+## 🚦 Getting Started
+
+Follow these instructions to set up the project locally for development or contributions.
+
+### Prerequisites
+
+*   Node.js (v18 or higher recommended)
+*   npm package manager
+
+### Installation
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/RippleTip/rippletip-website.git
+    cd RippleTip-Website
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+### Running Locally
+
+1.  **Start the development server:**
+    ```bash
+    npm run dev
+    ```
+2.  Open your browser and navigate to `http://localhost:5173` (or the port specified in the terminal).
+
+### Building for Production
+
+1.  **Create a production build:**
+    ```bash
+    npm run build
+    ```
+    This command generates optimized static assets in the `dist/` folder.
+
+## 📁 Project Structure
+
+The project follows a modular structure within the `src/` directory to ensure maintainability:
+
+```
+src/
+├── assets/            # Static assets (images, fonts)
+├── components/        # Reusable React components
+│   ├── features/      # Components specific to website features (Sections, Cards)
+│   ├── hero/          # Modular components for the Hero section
+│   ├── layout/        # Structural components (Header, Footer)
+│   └── ui/            # Generic UI elements (Button, Logo, Icons, etc.)
+├── constants/         # Global constants (links, command data, etc.)
+├── contexts/          # React Context providers (e.g., ThemeContext)
+├── hooks/             # Custom React hooks (e.g., useTheme)
+├── pages/             # Components representing entire pages/views
+├── router/            # Routing configuration (react-router-dom)
+├── styles/            # Global styles, Tailwind base
+├── types/             # TypeScript type definitions (interfaces, types)
+└── App.tsx            # Main application component orchestrating layout and routes
+└── main.tsx           # Application entry point (renders App into the DOM)
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Deployment
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+*   **Live Site:** [https://rippletip.vercel.app/](https://rippletip.vercel.app/)
+*   **Build Command:** `npm run build`
+*   **Output Directory:** `dist`
