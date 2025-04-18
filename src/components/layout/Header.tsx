@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { ThemeToggleButton, Logo, AddBotButton } from '../ui';
+import { ThemeToggleButton, Logo, ConnectDiscordButton } from '../ui';
 import { HiOutlineBars3, HiOutlineXMark } from 'react-icons/hi2';
 import { useTheme } from '../../hooks';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -106,7 +106,7 @@ const Header = () => {
             <ThemeToggleButton
               className={isScrolled ? '' : `${getTransparentHeaderTextColor()} focus:ring-white/50`}
             />
-            <AddBotButton className="hidden lg:inline-flex" />
+            <ConnectDiscordButton className="hidden lg:inline-flex" />
 
             <div className="md:hidden">
               <button
@@ -170,7 +170,7 @@ const Header = () => {
                 exit="exit"
                 className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700"
               >
-                <AddBotButton
+                <ConnectDiscordButton
                   className="block w-full text-lg font-semibold py-3"
                   onClick={toggleMobileMenu}
                 />
