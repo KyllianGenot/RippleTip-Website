@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { ThemeToggleButton, Logo, ConnectDiscordButton, Button } from '../ui';
+import { ThemeToggleButton, Logo, ConnectDiscordButton, Button, UserDropdown } from '../ui';
 import { HiOutlineBars3, HiOutlineXMark } from 'react-icons/hi2';
+import { HiOutlinePlus, HiOutlineLogout } from 'react-icons/hi';
 import { useTheme } from '../../hooks';
 import { useAuth } from '../../context/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -82,26 +83,25 @@ const Header = () => {
     }
   };
 
+  const handleAddFunds = () => {
+    console.log('Add Funds clicked!');
+    if (isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+    }
+  };
+
   const AuthSection = () => {
     if (isLoading) {
-        return <div className="w-24 h-8 rounded-md bg-gray-200 dark:bg-gray-700 animate-pulse"></div>;
+        return <div className="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 animate-pulse"></div>;
     }
 
     if (isLoggedIn && user) {
         return (
-            <div className="flex items-center space-x-3">
-                <img
-                    src={user.avatar || `https://cdn.discordapp.com/embed/avatars/${parseInt(user.id) % 5}.png`}
-                    alt={`${user.globalName || user.username}'s avatar`}
-                    className="w-8 h-8 rounded-full"
-                />
-                <span className="hidden sm:inline text-sm font-medium text-gray-700 dark:text-gray-300">
-                    {user.globalName || user.username}
-                </span>
-                <Button onClick={handleLogout} size="sm" variant="secondary">
-                    Logout
-                </Button>
-            </div>
+            <UserDropdown
+                user={user}
+                onLogout={handleLogout}
+                onAddFunds={handleAddFunds}
+            />
         );
     }
 
@@ -110,23 +110,42 @@ const Header = () => {
 
   const MobileAuthSection = () => {
     if (isLoading) {
-        return <div className="w-full h-10 rounded-md bg-gray-200 dark:bg-gray-700 animate-pulse"></div>;
+        return <div className="w-full h-10 rounded-md bg-gray-200 dark:bg-gray-700 animate-pulse mb-3"></div>;
     }
 
     if (isLoggedIn && user) {
       return (
-          <div className="flex flex-col items-center space-y-3">
-             <img
-                 src={user.avatar || `https://cdn.discordapp.com/embed/avatars/${parseInt(user.id) % 5}.png`}
-                 alt={`${user.globalName || user.username}'s avatar`}
-                 className="w-10 h-10 rounded-full border-2 border-gray-300 dark:border-gray-600"
-             />
-             <span className="text-base font-medium text-gray-800 dark:text-gray-200">
-                 {user.globalName || user.username}
-             </span>
-             <Button onClick={handleLogout} size="md" variant="secondary" className="w-full">
-                 Logout
-             </Button>
+          <div className="flex flex-col items-center space-y-4">
+             <div className="flex items-center space-x-3 mb-4 justify-center">
+                 <img
+                     src={user.avatar || `https://cdn.discordapp.com/embed/avatars/${parseInt(user.id) % 5}.png`}
+                     alt={`${user.globalName || user.username}'s avatar`}
+                     className="w-10 h-10 rounded-full border-2 border-gray-300 dark:border-gray-600"
+                 />
+                 <span className="text-base font-medium text-gray-800 dark:text-gray-200">
+                     {user.globalName || user.username}
+                 </span>
+             </div>
+             <div className="w-full space-y-2">
+                 <Button
+                     onClick={handleAddFunds}
+                     size="md"
+                     variant="gradient-blue"
+                     className="w-full"
+                     iconLeft={<HiOutlinePlus className="w-5 h-5" />}
+                 >
+                     Add Funds
+                 </Button>
+                 <Button
+                     onClick={handleLogout}
+                     size="md"
+                     variant="secondary"
+                     className="w-full"
+                     iconLeft={<HiOutlineLogout className="w-5 h-5" />}
+                 >
+                     Logout
+                 </Button>
+             </div>
           </div>
       );
     }

@@ -84,7 +84,7 @@ const Button = ({
 
   const baseClasses = `
     inline-flex items-center justify-center font-semibold align-middle
-    border focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-900
+    focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-900
     transition-all duration-300 ease-out whitespace-nowrap
     relative overflow-hidden group
     shadow-md hover:shadow-lg active:shadow-sm
@@ -100,15 +100,17 @@ const Button = ({
 
   const variantClasses: Record<ButtonVariant, string> = {
     primary: `
-      bg-gradient-to-br from-indigo-500 via-purple-500 to-indigo-600 text-white border-indigo-600/30
+      border border-indigo-600/30 dark:border-indigo-300/30
+      bg-gradient-to-br from-indigo-500 via-purple-500 to-indigo-600 text-white
       hover:from-indigo-400 hover:to-purple-400 focus:ring-indigo-500
-      dark:from-indigo-400 dark:via-purple-400 dark:to-indigo-500 dark:border-indigo-300/30
+      dark:from-indigo-400 dark:via-purple-400 dark:to-indigo-500
       dark:hover:from-indigo-300 dark:hover:to-purple-300
     `,
     secondary: `
-      bg-gradient-to-br from-gray-200 to-gray-300 text-gray-800 border-gray-400/70
-      hover:from-gray-100 hover:to-gray-200 hover:border-gray-500 focus:ring-indigo-500
-      dark:from-gray-700 dark:to-gray-800 dark:text-gray-200 dark:border-gray-600/50
+      border border-gray-300 dark:border-gray-600/50
+      bg-gradient-to-br from-white to-gray-100 text-gray-700
+      hover:from-gray-50 hover:to-gray-100 hover:border-gray-400 focus:ring-indigo-500
+      dark:from-gray-700 dark:to-gray-800 dark:text-gray-200
       dark:hover:from-gray-600 dark:hover:to-gray-700 dark:hover:border-gray-500
     `,
     outline: `
@@ -117,14 +119,15 @@ const Button = ({
       dark:text-indigo-400 dark:border-indigo-500/80 dark:hover:bg-indigo-900/30 dark:hover:border-indigo-400 dark:hover:text-indigo-300
     `,
     discord: `
-      bg-gradient-to-br from-[#5865F2] via-[#6a75f3] to-[#5865F2] text-white border-[#4752C4]/30
+      border border-[#4752C4]/30 dark:border-[#6a75f3]/30
+      bg-gradient-to-br from-[#5865F2] via-[#6a75f3] to-[#5865F2] text-white
       hover:from-[#4752C4] hover:to-[#5865F2] focus:ring-[#5865F2]/50
-      dark:border-[#6a75f3]/30
     `,
     'gradient-blue': `
-      bg-gradient-to-r from-cyan-400 to-blue-600 text-white border-cyan-500/30
+      ring-1 ring-blue-600/50 dark:ring-blue-500/50
+      bg-gradient-to-r from-cyan-400 to-blue-600 text-white
       hover:from-cyan-500 hover:to-blue-700 focus:ring-blue-500
-      dark:from-cyan-300 dark:to-blue-500 dark:border-cyan-400/30
+      dark:from-cyan-300 dark:to-blue-500
       dark:hover:from-cyan-400 dark:hover:to-blue-600
     `,
   };

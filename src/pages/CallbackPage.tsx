@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
@@ -6,71 +6,71 @@ const CallbackPage: React.FC = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const { login } = useAuth();
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const hasAttemptedExchange = useRef(false);
 
   useEffect(() => {
-    const code = searchParams.get('code');
-    // Potential: Get state as well if implementing CSRF protection
-    // const state = searchParams.get('state');
-
-    if (!code) {
-      setError('No authorization code found in the callback URL.');
-      setIsLoading(false);
-      // Optional: Redirect after a delay
-      // setTimeout(() => navigate('/'), 3000);
+    if (hasAttemptedExchange.current) {
       return;
     }
 
+    const code = searchParams.get('code');
+    const discordError = searchParams.get('error');
+    const discordErrorDescription = searchParams.get('error_description');
+
+    if (discordError === 'access_denied') {
+      console.log('Discord access denied by user. Redirecting home.');
+      hasAttemptedExchange.current = true;
+      navigate(`/?discord_status=error&message=${encodeURIComponent(discordErrorDescription || 'Access denied by user.')}`, { replace: true });
+      return;
+    }
+
+    if (!code) {
+      console.error('No authorization code found in the callback URL.');
+      hasAttemptedExchange.current = true;
+      navigate(`/?discord_status=error&message=${encodeURIComponent('Missing authorization code.')}`, { replace: true });
+      return;
+    }
+
+    hasAttemptedExchange.current = true;
+
     const exchangeCode = async (authCode: string) => {
-      setIsLoading(true);
       try {
         const response = await fetch('/api/auth/discord/exchange', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          // Send the code in the request body
-          body: JSON.stringify({ code: authCode /*, state: state */ }), 
+          body: JSON.stringify({ code: authCode }),
         });
 
         const data = await response.json();
 
         if (response.ok && data.success && data.user) {
-          // Update the global auth state
           login(data.user);
-          // Redirect to the homepage after successful login
-          navigate('/'); 
+          navigate('/?discord_status=success', { replace: true });
         } else {
-          setError(data.message || 'Failed to exchange code for token.');
+          const errorMessage = data.message || 'Failed to connect Discord account.';
+          console.error('Failed to exchange code:', errorMessage);
+          navigate(`/?discord_status=error&message=${encodeURIComponent(errorMessage)}`, { replace: true });
         }
       } catch (err: any) {
+        const errorMessage = err.message || 'An unexpected error occurred during Discord connection.';
         console.error("Callback exchange error:", err);
-        setError(err.message || 'An unexpected error occurred during login.');
-      } finally {
-         setIsLoading(false);
+        navigate(`/?discord_status=error&message=${encodeURIComponent(errorMessage)}`, { replace: true });
       }
     };
 
     exchangeCode(code);
 
-  }, [searchParams, login, navigate]); // Dependencies for useEffect
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams, login]);
 
-  // Display loading or error message
-  if (isLoading) {
-    return <div>Loading... Please wait.</div>; // Replace with a proper loading spinner/component
-  }
-
-  if (error) {
-    return (
-        <div>
-            <h2>Login Error</h2>
-            <p>{error}</p>
-            <button onClick={() => navigate('/')}>Go Home</button>
-        </div>
-    );
-  }
-
-  // Should ideally redirect before reaching here, but as a fallback:
-  return <div>Processing complete. You should be redirected shortly.</div>;
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-white dark:bg-gray-900">
+      <div className="text-center">
+         <div className="animate-spin rounded-full h-12 w-12 border-4 border-solid border-gray-200 dark:border-gray-700 border-t-blue-500 dark:border-t-blue-400 mx-auto mb-4"></div>
+         <p className="text-gray-600 dark:text-gray-400">Connecting your Discord account...</p>
+      </div>
+    </div>
+  );
 };
 
 export default CallbackPage; 

@@ -13,6 +13,7 @@
     "server:start": "node dist/server/index.js"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.2",
     "@lottiefiles/react-lottie-player": "^3.6.0",
     "@moonpay/moonpay-js": "^0.6.6",
     "@types/express": "^5.0.1",
@@ -30,6 +31,7 @@
     "react-icons": "^5.5.0",
     "react-intersection-observer": "^9.16.0",
     "react-router-dom": "^7.4.1",
+    "react-toastify": "^11.0.5",
     "three": "^0.175.0",
     "vanta": "^0.5.24"
   },
