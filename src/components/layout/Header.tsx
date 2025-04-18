@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { ThemeToggleButton, Logo, ConnectDiscordButton } from '../ui';
+import { ThemeToggleButton, Logo, ConnectDiscordButton, Button } from '../ui';
 import { HiOutlineBars3, HiOutlineXMark } from 'react-icons/hi2';
 import { useTheme } from '../../hooks';
+import { useAuth } from '../../context/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Header = () => {
   const { theme } = useTheme();
   const isDarkMode = theme === 'dark';
+  const { isLoggedIn, user, logout, isLoading } = useAuth();
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -73,6 +75,69 @@ const Header = () => {
     exit: { opacity: 0, y: -10, transition: { duration: 0.2 } },
   };
 
+  const handleLogout = async () => {
+    await logout();
+    if (isMobileMenuOpen) {
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  const AuthSection = () => {
+    if (isLoading) {
+        return <div className="w-24 h-8 rounded-md bg-gray-200 dark:bg-gray-700 animate-pulse"></div>;
+    }
+
+    if (isLoggedIn && user) {
+        return (
+            <div className="flex items-center space-x-3">
+                <img
+                    src={user.avatar || `https://cdn.discordapp.com/embed/avatars/${parseInt(user.id) % 5}.png`}
+                    alt={`${user.globalName || user.username}'s avatar`}
+                    className="w-8 h-8 rounded-full"
+                />
+                <span className="hidden sm:inline text-sm font-medium text-gray-700 dark:text-gray-300">
+                    {user.globalName || user.username}
+                </span>
+                <Button onClick={handleLogout} size="sm" variant="secondary">
+                    Logout
+                </Button>
+            </div>
+        );
+    }
+
+    return <ConnectDiscordButton className="hidden lg:inline-flex" size="md" />;
+  };
+
+  const MobileAuthSection = () => {
+    if (isLoading) {
+        return <div className="w-full h-10 rounded-md bg-gray-200 dark:bg-gray-700 animate-pulse"></div>;
+    }
+
+    if (isLoggedIn && user) {
+      return (
+          <div className="flex flex-col items-center space-y-3">
+             <img
+                 src={user.avatar || `https://cdn.discordapp.com/embed/avatars/${parseInt(user.id) % 5}.png`}
+                 alt={`${user.globalName || user.username}'s avatar`}
+                 className="w-10 h-10 rounded-full border-2 border-gray-300 dark:border-gray-600"
+             />
+             <span className="text-base font-medium text-gray-800 dark:text-gray-200">
+                 {user.globalName || user.username}
+             </span>
+             <Button onClick={handleLogout} size="md" variant="secondary" className="w-full">
+                 Logout
+             </Button>
+          </div>
+      );
+    }
+    return (
+        <ConnectDiscordButton
+            className="block w-full text-lg font-semibold py-3"
+            onClick={toggleMobileMenu}
+        />
+    );
+  };
+
   return (
     <header
       className={`fixed w-full top-0 z-50 transition-all duration-300 ease-out ${
@@ -106,7 +171,9 @@ const Header = () => {
             <ThemeToggleButton
               className={isScrolled ? '' : `${getTransparentHeaderTextColor()} focus:ring-white/50`}
             />
-            <ConnectDiscordButton className="hidden lg:inline-flex" />
+            <div className="hidden lg:flex">
+              <AuthSection />
+            </div>
 
             <div className="md:hidden">
               <button
@@ -170,10 +237,7 @@ const Header = () => {
                 exit="exit"
                 className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700"
               >
-                <ConnectDiscordButton
-                  className="block w-full text-lg font-semibold py-3"
-                  onClick={toggleMobileMenu}
-                />
+                <MobileAuthSection />
               </motion.div>
             </div>
           </motion.div>
