@@ -6,11 +6,19 @@ import { HiOutlinePlus, HiOutlineLogout } from 'react-icons/hi';
 import { useTheme } from '../../hooks';
 import { useAuth } from '../../context/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
+import { MoonPayBuyWidget } from '@moonpay/moonpay-react';
 
 const Header = () => {
   const { theme } = useTheme();
   const isDarkMode = theme === 'dark';
-  const { isLoggedIn, user, logout, isLoading } = useAuth();
+  const { 
+    isLoggedIn, 
+    user, 
+    logout, 
+    isLoading, 
+    isMoonPayWidgetVisible,
+    setMoonPayWidgetVisible
+  } = useAuth();
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -84,7 +92,8 @@ const Header = () => {
   };
 
   const handleAddFunds = () => {
-    console.log('Add Funds clicked!');
+    console.log('Add Funds clicked from Header!');
+    setMoonPayWidgetVisible(true);
     if (isMobileMenuOpen) {
         setIsMobileMenuOpen(false);
     }
@@ -158,6 +167,7 @@ const Header = () => {
   };
 
   return (
+    <>
     <header
       className={`fixed w-full top-0 z-50 transition-all duration-300 ease-out ${
         isVisible ? 'translate-y-0' : '-translate-y-full'
@@ -263,6 +273,17 @@ const Header = () => {
         )}
       </AnimatePresence>
     </header>
+    <MoonPayBuyWidget
+      variant="overlay"
+      baseCurrencyCode="usd"
+      baseCurrencyAmount="100"
+      defaultCurrencyCode="eth"
+      visible={isMoonPayWidgetVisible}
+      onClose={async () => setMoonPayWidgetVisible(false)}
+      theme={theme}
+      colorCode="#2563eb"
+    />
+    </>
   );
 };
 

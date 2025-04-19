@@ -18,15 +18,19 @@ const discordAuthUrl = clientId && redirectUri
 
 export const HeroContent: React.FC = () => {
   const { theme } = useTheme();
-  const { isLoggedIn, isLoading } = useAuth();
+  const { isLoggedIn, isLoading, setMoonPayWidgetVisible } = useAuth();
   const isDarkMode = theme === 'dark';
 
   const handleAddFundsClick = () => {
     if (!isLoading) {
       if (isLoggedIn) {
-        console.log('Add Funds action triggered (logged in).');
+        console.log('Add Funds action triggered from Hero (logged in) -> Opening MoonPay');
+        setMoonPayWidgetVisible(true);
       } else {
         if (discordAuthUrl !== '#') {
+          console.log('Add Funds action triggered from Hero (logged out) -> Setting flag and Redirecting to Discord');
+          // Set flag in localStorage before redirecting
+          localStorage.setItem('openMoonPayAfterLogin', 'true');
           window.location.href = discordAuthUrl;
         } else {
           console.error('Discord auth URL is not configured.');
