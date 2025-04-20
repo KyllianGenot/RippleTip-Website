@@ -3,9 +3,8 @@ import { motion } from 'framer-motion';
 import { Button } from '../ui';
 import { useTheme } from '../../hooks';
 import { useAuth } from '../../context/AuthContext';
-import { Link } from 'react-router-dom';
 import { BOT_INVITE_LINK } from '../../constants';
-import { HiArrowRight, HiOutlinePlus } from 'react-icons/hi2';
+import { HiOutlinePlus } from 'react-icons/hi2';
 import { DiscordIcon } from '../ui/icons';
 
 // Get Discord auth variables from environment

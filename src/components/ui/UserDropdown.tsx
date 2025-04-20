@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
-import Button from './Button'; // Corrected import for default export
 import { User } from '../../context/AuthContext'; // Adjust path if needed
 import { HiOutlinePlus, HiOutlineLogout } from 'react-icons/hi'; // Import icons
 

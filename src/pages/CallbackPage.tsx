@@ -2,6 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
+// Define the base URL for the API using environment variable
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
+
 const CallbackPage: React.FC = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -35,10 +38,12 @@ const CallbackPage: React.FC = () => {
 
     const exchangeCode = async (authCode: string) => {
       try {
-        const response = await fetch('/api/auth/discord/exchange', {
+        console.log("Exchanging code:", authCode);
+        const response = await fetch(`${API_BASE_URL}/api/auth/discord/exchange`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ code: authCode }),
+          credentials: 'include',
         });
 
         const data = await response.json();
@@ -60,8 +65,7 @@ const CallbackPage: React.FC = () => {
 
     exchangeCode(code);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchParams, login]);
+  }, [searchParams, login, navigate]);
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-white dark:bg-gray-900">

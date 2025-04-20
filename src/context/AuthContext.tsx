@@ -1,4 +1,9 @@
 import React, { createContext, useState, useContext, useEffect, ReactNode, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
+// Define the base URL for the API using environment variable
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
 
 export interface User {
   id: string;
@@ -39,19 +44,23 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setAuthState(prev => ({ ...prev, isMoonPayWidgetVisible: visible }));
   };
 
-  const login = (userData: User) => {
+  // Wrap login in useCallback to stabilize its reference
+  const login = useCallback((userData: User) => {
     setAuthState({
       isLoggedIn: true,
       user: userData,
       isLoading: false,
       isMoonPayWidgetVisible: false,
     });
-  };
+  }, []);
 
   const performLogout = useCallback(async () => {
       try {
-          const response = await fetch('/api/auth/logout', { method: 'POST' });
-          if (response.ok) {
+          // Include credentials for consistency
+          const response = await fetch(`${API_BASE_URL}/api/auth/logout`, { method: 'POST', credentials: 'include' });
+          const data = await response.json();
+
+          if (data.success) {
               setAuthState({ isLoggedIn: false, user: null, isLoading: false, isMoonPayWidgetVisible: false });
               // Optionally redirect or update UI further
               console.log("Logout successful");
@@ -69,21 +78,37 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const checkStatus = useCallback(async () => {
       setAuthState(prev => ({ ...prev, isLoading: true })); // Set loading true during check
       try {
-          const response = await fetch('/api/auth/status');
+          // Explicitly include credentials (cookies) in the status request
+          const response = await fetch(`${API_BASE_URL}/api/auth/status`, { credentials: 'include' });
+          console.log("[AuthContext checkStatus] Response Status:", response.status);
+
+          // Log raw response text before parsing
+          const responseText = await response.text();
+          console.log("[AuthContext checkStatus] Raw Response Text:", responseText);
+
           if (!response.ok) {
-              throw new Error('Failed to fetch auth status');
-          }
-          const data = await response.json();
-          if (data.loggedIn && data.user) {
-              login(data.user);
+              console.error('Auth status check failed:', response.status, response.statusText, "Response:", responseText);
+              setAuthState({ isLoggedIn: false, user: null, isLoading: false, isMoonPayWidgetVisible: false }); // Assume logged out if status check fails badly
           } else {
-              setAuthState({ isLoggedIn: false, user: null, isLoading: false, isMoonPayWidgetVisible: false });
+              // Parse the response text as JSON
+              try {
+                  const data = JSON.parse(responseText);
+                  console.log("[AuthContext checkStatus] Parsed Data:", data);
+                  if (data.loggedIn && data.user) {
+                      login(data.user);
+                  } else {
+                      setAuthState({ isLoggedIn: false, user: null, isLoading: false, isMoonPayWidgetVisible: false });
+                  }
+              } catch (parseError) {
+                  console.error("[AuthContext checkStatus] Failed to parse JSON response:", parseError, "Raw text was:", responseText);
+                  setAuthState({ isLoggedIn: false, user: null, isLoading: false, isMoonPayWidgetVisible: false });
+              }
           }
       } catch (error) {
           console.error("Error checking auth status:", error);
           setAuthState({ isLoggedIn: false, user: null, isLoading: false, isMoonPayWidgetVisible: false }); // Assume logged out on error
       }
-  }, []);
+  }, [login]);
 
   // Check status on initial load
   useEffect(() => {

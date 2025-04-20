@@ -6,7 +6,7 @@ import { AnimatedSection } from '../components/ui';
 import { HeroSection } from '../components/features';
 
 const HomePage = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, _setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
   useEffect(() => {
