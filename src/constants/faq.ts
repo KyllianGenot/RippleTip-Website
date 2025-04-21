@@ -41,7 +41,7 @@ export const FAQ_LIST: FaqItem[] = [
   {
     question: 'Is there identity verification (KYC)?',
     answer:
-      'For small payments (10–50€), only <b>email + card</b> is needed.<br/>Larger deposits may require <b>full KYC</b>, depending on the provider.',
+      'For small payments (10–50€), only <b>email + card</b> is needed.<br/>Larger deposits may require <b>full KYC</b>.',
     icon: FaQuestionCircle,
   },
   {
