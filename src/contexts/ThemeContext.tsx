@@ -17,8 +17,8 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const [theme, setTheme] = useState<Theme>(() => {
     const storedTheme = localStorage.getItem('theme') as Theme | null;
     if (storedTheme) return storedTheme;
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    return prefersDark ? 'dark' : 'light';
+    // Always default to dark theme if no preference is stored
+    return 'dark';
   });
 
   useEffect(() => {
