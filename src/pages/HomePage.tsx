@@ -1,9 +1,14 @@
 import { useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { FeaturesSection, HowItWorksSection, CallToActionSection } from '../components/features';
+import {
+  FeaturesSection,
+  HowItWorksSection,
+  CallToActionSection,
+  HeroSection,
+  FaqSection,
+} from '../components/features';
 import { AnimatedSection } from '../components/ui';
-import { HeroSection } from '../components/features';
 
 const HomePage = () => {
   const [searchParams, _setSearchParams] = useSearchParams();
@@ -40,6 +45,10 @@ const HomePage = () => {
 
       <AnimatedSection>
         <HowItWorksSection />
+      </AnimatedSection>
+
+      <AnimatedSection>
+        <FaqSection />
       </AnimatedSection>
 
       <AnimatedSection>
