@@ -14,7 +14,7 @@ export const HeroStats: React.FC = () => {
 
   const targetVolume = 500000;
   const targetUsers = 5000;
-  const feePercentage = 2;
+  const feePercentage = 1;
   
   const stats = [
     { 

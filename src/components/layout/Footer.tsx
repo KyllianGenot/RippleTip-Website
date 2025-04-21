@@ -21,6 +21,9 @@ export const Footer: React.FC = () => {
             <p className="text-sm text-gray-500 dark:text-gray-400">
               © {currentYear} RippleTip.<br className="sm:hidden" /> All rights reserved.{' '}
             </p>
+            <p className="text-xs text-gray-400 dark:text-gray-500 mt-1 sm:mt-0 sm:ml-4">
+              RippleTip is not affiliated with Ripple or the XRP Ledger.
+            </p>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-5">

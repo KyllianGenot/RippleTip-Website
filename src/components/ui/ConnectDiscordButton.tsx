@@ -58,7 +58,7 @@ const ConnectDiscordButton: React.FC<ConnectDiscordButtonProps> = ({
       onClick={onClick} // Keep onClick for potential mobile menu closing
       iconLeft={<DiscordIcon className={size === 'lg' ? 'w-5 h-5' : size === 'md' ? 'w-4 h-4' : 'w-3.5 h-3.5'} />}
     >
-      Connect with Discord
+      Log In with Discord
     </Button>
   );
 };
