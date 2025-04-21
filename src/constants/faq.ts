@@ -11,7 +11,7 @@ export const FAQ_LIST: FaqItem[] = [
   {
     question: 'What is RippleTip?',
     answer:
-      'RippleTip is a Discord bot that lets you send and receive small amounts of money (RLUSD) like a tip — just by using commands.<br/>No crypto knowledge needed.',
+      '<b>RippleTip</b> is a <b>Discord bot</b> that lets you <b>send and receive small amounts of money (RLUSD)</b> like a <b>tip</b> — just by using <b>commands</b>.<br/><b>No crypto knowledge needed</b>.',
     icon: FaQuestionCircle,
   },
   {
