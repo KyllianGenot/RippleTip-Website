@@ -8,12 +8,6 @@ export const COMMANDS: BotCommand[] = [
     category: 'Basic Commands',
   },
   {
-    name: 'connect',
-    description: 'Connect an existing XRPL wallet to your Discord account.',
-    usage: '/connect <address> <seed>',
-    category: 'Basic Commands',
-  },
-  {
     name: 'balance',
     description: 'Check your RLUSD balance or that of another user.',
     usage: '/balance [user]',

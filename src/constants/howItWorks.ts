@@ -18,7 +18,7 @@ export const HOW_IT_WORKS_STEPS: HowToStep[] = [
   {
       step: 3,
       title: 'Fund Your Wallet',
-      description: 'Deposit RLUSD into your wallet using the generated QR Code.',
+      description: "Deposit RLUSD into your wallet using the on-ramp 'Add Funds' button, or the generated QR code.",
   },
   {
       step: 4,
