@@ -6,7 +6,7 @@ import { useTheme } from '../../hooks';
 
 interface AccordionItemProps {
   title: string;
-  children: React.ReactNode;
+  children: string;
   isOpen: boolean;
   onClick: () => void;
   icon?: IconType;
@@ -49,9 +49,10 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ title, children, isOpen, 
             transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
             className="overflow-hidden"
           >
-            <div className={`pl-10 pr-2 pb-4 text-base ${isDarkMode ? 'text-gray-300' : 'text-gray-600'} whitespace-pre-line`}>
-              {children}
-            </div>
+            <div 
+              className={`pl-10 pr-2 pb-4 text-base ${isDarkMode ? 'text-gray-300' : 'text-gray-600'} whitespace-pre-line`}
+              dangerouslySetInnerHTML={{ __html: children }} 
+            />
           </motion.div>
         )}
       </AnimatePresence>
@@ -60,7 +61,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ title, children, isOpen, 
 };
 
 interface AccordionProps {
-  items: Array<{ title: string; content: React.ReactNode; icon?: IconType }>;
+  items: Array<{ title: string; content: string; icon?: IconType }>;
 }
 
 export const Accordion: React.FC<AccordionProps> = ({ items }) => {
