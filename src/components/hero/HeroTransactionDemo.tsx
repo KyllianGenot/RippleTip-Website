@@ -109,7 +109,7 @@ export const HeroTransactionDemo: React.FC = () => {
         />
 
         <DemoResponse
-          botName="RippleTip"
+          botName="WaveTip"
           message="Transaction confirmed! Sent 5 RLUSD to @friendUser."
           delay={1.2}
         />

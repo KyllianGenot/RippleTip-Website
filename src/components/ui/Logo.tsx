@@ -11,13 +11,13 @@ const Logo = ({ className = '' }: LogoProps) => {
   const { theme } = useTheme();
   const logoToShow = theme === 'dark' ? logoDark : logoLight;
 
-  const logoSizeClass = 'h-6 w-auto';
+  const logoSizeClass = 'h-7 w-auto';
 
   return (
-    <Link to="/" aria-label="RippleTip Homepage" className={`inline-block ${className}`}>
+    <Link to="/" aria-label="WaveTip Homepage" className={`inline-block ${className}`}>
       <img
         src={logoToShow}
-        alt="RippleTip Logo"
+        alt="WaveTip Logo"
         className={`${logoSizeClass} block`}
       />
     </Link>

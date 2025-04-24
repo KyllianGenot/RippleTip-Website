@@ -14,7 +14,7 @@ export interface FeatureInfo {
 export const FEATURES_LIST: FeatureInfo[] = [
   {
     title: 'Quick Setup',
-    description: 'Add RippleTip to your server and start tipping in minutes.',
+    description: 'Add WaveTip to your server and start tipping in minutes.',
     icon: HiOutlineRocketLaunch,
   },
   {

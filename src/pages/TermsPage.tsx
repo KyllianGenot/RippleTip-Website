@@ -9,18 +9,18 @@ const TermsPage = () => {
       <div className="prose dark:prose-invert max-w-none space-y-6 text-gray-700 dark:text-gray-300">
 
         <p>
-          Welcome to RippleTip! These Terms of Service ("Terms") govern your access to and use of the RippleTip website (<a href="https://rippletip.vercel.app" className="text-blue-600 dark:text-blue-400 hover:underline">https://rippletip.vercel.app</a>) and associated Discord bot (collectively, the "Service"), operated by "the RippleTip team" ("we", "us", or "our"). Please read these Terms carefully before using the Service.
+          Welcome to WaveTip! These Terms of Service ("Terms") govern your access to and use of the WaveTip website (<a href="https://wavetip.vercel.app" className="text-blue-600 dark:text-blue-400 hover:underline">https://wavetip.vercel.app</a>) and associated Discord bot (collectively, the "Service"), operated by "the WaveTip team" ("we", "us", or "our"). Please read these Terms carefully before using the Service.
         </p>
         <p>
           By accessing or using the Service, you agree to be bound by these Terms and our Privacy Policy. If you disagree with any part of the terms, then you may not access the Service.
         </p>
         <p className="font-medium italic">
-          RippleTip is an independent project and is not affiliated with, endorsed by, or sponsored by Ripple, the XRP Ledger Foundation, or Discord Inc.
+          WaveTip is an independent project and is not affiliated with, endorsed by, or sponsored by Ripple, the XRP Ledger Foundation, or Discord Inc.
         </p>
 
         <h2 className="text-2xl font-semibold mt-8 mb-3 border-b pb-2 border-gray-300 dark:border-gray-700">1. Description of Service</h2>
         <p>
-          RippleTip provides tools to interact with the XRP Ledger (XRPL), primarily focused on facilitating tips or payments using RLUSD (or other specified tokens) via a Discord bot and associated web interface. Functionality includes creating/managing non-custodial XRPL wallets linked to Discord accounts, checking balances, sending/receiving tips, viewing transaction history, and participating in leaderboards.
+          WaveTip provides tools to interact with the XRP Ledger (XRPL), primarily focused on facilitating tips or payments using RLUSD (or other specified tokens) via a Discord bot and associated web interface. Functionality includes creating/managing non-custodial XRPL wallets linked to Discord accounts, checking balances, sending/receiving tips, viewing transaction history, and participating in leaderboards.
         </p>
         <p>
            <strong>Important:</strong> We provide tools to interact with the XRPL, but we do not control the network itself. We are not a custodian of your funds. If you create a wallet through our service, you are responsible for securely storing any secret keys or recovery phrases provided. We cannot recover lost funds or wallets.
@@ -37,7 +37,7 @@ const TermsPage = () => {
             <strong>Authentication:</strong> Access to certain features requires authenticating via your Discord account. You are responsible for maintaining the confidentiality of your Discord account credentials.
           </li>
           <li>
-            <strong>Wallet Security:</strong> You are solely responsible for the security of any XRP Ledger wallet associated with your account, including safeguarding private keys or secret numbers. RippleTip does not store your private keys and cannot access or recover your wallet if you lose your credentials.
+            <strong>Wallet Security:</strong> You are solely responsible for the security of any XRP Ledger wallet associated with your account, including safeguarding private keys or secret numbers. WaveTip does not store your private keys and cannot access or recover your wallet if you lose your credentials.
           </li>
           <li>
             <strong>Accurate Information:</strong> You agree to provide accurate and complete information when using the Service, particularly if interacting with third-party services like MoonPay.
@@ -70,7 +70,7 @@ const TermsPage = () => {
 
         <h2 className="text-2xl font-semibold mt-8 mb-3 border-b pb-2 border-gray-300 dark:border-gray-700">6. Intellectual Property</h2>
         <p>
-          The Service and its original content (excluding user-generated content and data on the XRPL), features, and functionality are and will remain the exclusive property of "the RippleTip team" and its licensors. The Service is protected by copyright, trademark, and other laws. Our trademarks and trade dress may not be used in connection with any product or service without our prior written consent.
+          The Service and its original content (excluding user-generated content and data on the XRPL), features, and functionality are and will remain the exclusive property of "the WaveTip team" and its licensors. The Service is protected by copyright, trademark, and other laws. Our trademarks and trade dress may not be used in connection with any product or service without our prior written consent.
         </p>
 
         <h2 className="text-2xl font-semibold mt-8 mb-3 border-b pb-2 border-gray-300 dark:border-gray-700">7. Disclaimers</h2>
@@ -83,12 +83,12 @@ const TermsPage = () => {
 
         <h2 className="text-2xl font-semibold mt-8 mb-3 border-b pb-2 border-gray-300 dark:border-gray-700">8. Limitation of Liability</h2>
         <p>
-          TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL "the RippleTip team", NOR ITS DIRECTORS, EMPLOYEES, PARTNERS, AGENTS, SUPPLIERS, OR AFFILIATES, BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING WITHOUT LIMITATION, LOSS OF PROFITS, DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM (I) YOUR ACCESS TO OR USE OF OR INABILITY TO ACCESS OR USE THE SERVICE; (II) ANY CONDUCT OR CONTENT OF ANY THIRD PARTY ON THE SERVICE; (III) ANY CONTENT OBTAINED FROM THE SERVICE; AND (IV) UNAUTHORIZED ACCESS, USE, OR ALTERATION OF YOUR TRANSMISSIONS OR CONTENT, WHETHER BASED ON WARRANTY, CONTRACT, TORT (INCLUDING NEGLIGENCE), OR ANY OTHER LEGAL THEORY, WHETHER OR NOT WE HAVE BEEN INFORMED OF THE POSSIBILITY OF SUCH DAMAGE, AND EVEN IF A REMEDY SET FORTH HEREIN IS FOUND TO HAVE FAILED OF ITS ESSENTIAL PURPOSE.
+          TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL "the WaveTip team", NOR ITS DIRECTORS, EMPLOYEES, PARTNERS, AGENTS, SUPPLIERS, OR AFFILIATES, BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING WITHOUT LIMITATION, LOSS OF PROFITS, DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES, RESULTING FROM (I) YOUR ACCESS TO OR USE OF OR INABILITY TO ACCESS OR USE THE SERVICE; (II) ANY CONDUCT OR CONTENT OF ANY THIRD PARTY ON THE SERVICE; (III) ANY CONTENT OBTAINED FROM THE SERVICE; AND (IV) UNAUTHORIZED ACCESS, USE, OR ALTERATION OF YOUR TRANSMISSIONS OR CONTENT, WHETHER BASED ON WARRANTY, CONTRACT, TORT (INCLUDING NEGLIGENCE), OR ANY OTHER LEGAL THEORY, WHETHER OR NOT WE HAVE BEEN INFORMED OF THE POSSIBILITY OF SUCH DAMAGE, AND EVEN IF A REMEDY SET FORTH HEREIN IS FOUND TO HAVE FAILED OF ITS ESSENTIAL PURPOSE.
         </p>
 
         <h2 className="text-2xl font-semibold mt-8 mb-3 border-b pb-2 border-gray-300 dark:border-gray-700">9. Indemnification</h2>
         <p>
-          You agree to defend, indemnify, and hold harmless "the RippleTip team" and its licensee and licensors, and their employees, contractors, agents, officers, and directors, from and against any and all claims, damages, obligations, losses, liabilities, costs or debt, and expenses (including but not limited to attorney's fees), resulting from or arising out of a) your use and access of the Service, or b) a breach of these Terms.
+          You agree to defend, indemnify, and hold harmless "the WaveTip team" and its licensee and licensors, and their employees, contractors, agents, officers, and directors, from and against any and all claims, damages, obligations, losses, liabilities, costs or debt, and expenses (including but not limited to attorney's fees), resulting from or arising out of a) your use and access of the Service, or b) a breach of these Terms.
         </p>
 
         <h2 className="text-2xl font-semibold mt-8 mb-3 border-b pb-2 border-gray-300 dark:border-gray-700">10. Termination</h2>

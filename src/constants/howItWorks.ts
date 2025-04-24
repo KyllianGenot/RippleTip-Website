@@ -7,7 +7,7 @@ export interface HowToStep {
 export const HOW_IT_WORKS_STEPS: HowToStep[] = [
   {
       step: 1,
-      title: 'Add RippleTip to Server',
+      title: 'Add WaveTip to Server',
       description: 'Invite the bot to your Discord server using the "Add to Discord" button.',
   },
   {

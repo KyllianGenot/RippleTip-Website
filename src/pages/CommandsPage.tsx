@@ -106,7 +106,7 @@ const CommandsPage = () => {
           variants={itemVariants}
           className={`text-left text-lg md:text-xl lg:text-2xl mb-8 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}
         >
-          Explore all available commands for RippleTip bot and enhance your Discord experience
+          Explore all available commands for WaveTip bot and enhance your Discord experience
         </motion.p>
 
         <motion.div variants={itemVariants} className="w-full mb-8">

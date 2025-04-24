@@ -9,21 +9,21 @@ export interface FaqItem {
 
 export const FAQ_LIST: FaqItem[] = [
   {
-    question: 'What is RippleTip?',
+    question: 'What is WaveTip?',
     answer:
-      '<b>RippleTip</b> is a <b>Discord bot</b> that lets you <b>send and receive small amounts of money (RLUSD)</b> like a <b>tip</b> — just by using <b>commands</b>.<br/><b>No crypto knowledge needed</b>.',
+      '<b>WaveTip</b> is a <b>Discord bot</b> that lets you <b>send and receive small amounts of money (RLUSD)</b> like a <b>tip</b> — just by using <b>commands</b>.<br/><b>No crypto knowledge needed</b>.',
     icon: FaQuestionCircle,
   },
   {
     question: 'How do I use it?',
     answer:
-      '1. <b>Add RippleTip</b> to your Discord server (you need to be admin).<br/>2. Go to our website and <b>log in with Discord</b>.<br/>3. Add money with your <b>card (fiat to RLUSD)</b> using the "<b>Add Funds</b>" button.<br/>4. Use commands like /tip @friend 2 to send money on Discord.',
+      '1. <b>Add WaveTip</b> to your Discord server (you need to be admin).<br/>2. Go to our website and <b>log in with Discord</b>.<br/>3. Add money with your <b>card (fiat to RLUSD)</b> using the "<b>Add Funds</b>" button.<br/>4. Use commands like /tip @friend 2 to send money on Discord.',
     icon: FaQuestionCircle,
   },
   {
-    question: 'How do I add RippleTip to my server?',
+    question: 'How do I add WaveTip to my server?',
     answer:
-      'You need to be <b>admin</b> or have permission to add bots.<br/>Click "<b>Add to Discord</b>" on our site, choose your server, and authorize RippleTip.',
+      'You need to be <b>admin</b> or have permission to add bots.<br/>Click "<b>Add to Discord</b>" on our site, choose your server, and authorize WaveTip.',
     icon: FaQuestionCircle,
   },
   {
@@ -53,19 +53,19 @@ export const FAQ_LIST: FaqItem[] = [
   {
     question: 'Are there fees?',
     answer:
-      "Yes, but they're very low.<br/><b>RippleTip takes 1%</b> per transaction — that's it.",
+      "Yes, but they're very low.<br/><b>WaveTip takes 1%</b> per transaction — that's it.",
     icon: FaQuestionCircle,
   },
   {
     question: 'Is my money safe?',
     answer:
-      '<b>Yes.</b> RippleTip uses secure systems to manage wallets.<br/>You never deal with crypto keys — everything is tied to your <b>Discord ID</b>.',
+      '<b>Yes.</b> WaveTip uses secure systems to manage wallets.<br/>You never deal with crypto keys — everything is tied to your <b>Discord ID</b>.',
     icon: FaQuestionCircle,
   },
   {
     question: 'How fast are transactions?',
     answer:
-      'Transactions on RippleTip are processed in just a few <b>seconds</b>, thanks to the speed of the <b>XRP Ledger</b>.<br/>You send a tip, and your friend gets it almost instantly.',
+      'Transactions on WaveTip are processed in just a few <b>seconds</b>, thanks to the speed of the <b>XRP Ledger</b>.<br/>You send a tip, and your friend gets it almost instantly.',
     icon: FaQuestionCircle,
   },
 ]; 

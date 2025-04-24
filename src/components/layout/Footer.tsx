@@ -19,10 +19,10 @@ export const Footer: React.FC = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-8">
           <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              © {currentYear} RippleTip.<br className="sm:hidden" /> All rights reserved.{' '}
+              © {currentYear} WaveTip.<br className="sm:hidden" /> All rights reserved.{' '}
             </p>
             <p className="text-xs text-gray-400 dark:text-gray-500 mt-1 sm:mt-0 sm:ml-4">
-              RippleTip is not affiliated with Ripple or the XRP Ledger.
+              WaveTip is not affiliated with Ripple or the XRP Ledger.
             </p>
           </div>
 
@@ -32,7 +32,7 @@ export const Footer: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
-              aria-label="Visit RippleTip on GitHub"
+              aria-label="Visit WaveTip on GitHub"
             >
               <GithubIcon size={20} />
             </a>

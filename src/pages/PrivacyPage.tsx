@@ -9,10 +9,10 @@ const PrivacyPage = () => {
       <div className="prose dark:prose-invert max-w-none space-y-6 text-gray-700 dark:text-gray-300">
 
         <p>
-          Your privacy is important to us. It is RippleTip's policy to respect your privacy regarding any information we may collect from you across our website (<a href="https://rippletip.vercel.app" className="text-blue-600 dark:text-blue-400 hover:underline">https://rippletip.vercel.app</a>) and our associated Discord bot ("Service").
+          Your privacy is important to us. It is WaveTip's policy to respect your privacy regarding any information we may collect from you across our website (<a href="https://wavetip.vercel.app" className="text-blue-600 dark:text-blue-400 hover:underline">https://wavetip.vercel.app</a>) and our associated Discord bot ("Service").
         </p>
         <p className="font-medium italic">
-          RippleTip is an independent project and is not affiliated with, endorsed by, or sponsored by Ripple, the XRP Ledger Foundation, or Discord Inc.
+          WaveTip is an independent project and is not affiliated with, endorsed by, or sponsored by Ripple, the XRP Ledger Foundation, or Discord Inc.
         </p>
 
         <h2 className="text-2xl font-semibold mt-8 mb-3 border-b pb-2 border-gray-300 dark:border-gray-700">1. Information We Collect</h2>
@@ -41,7 +41,7 @@ const PrivacyPage = () => {
         <h2 className="text-2xl font-semibold mt-8 mb-3 border-b pb-2 border-gray-300 dark:border-gray-700">2. How We Use Your Information</h2>
         <p>We use the collected information to:</p>
         <ul className="list-disc pl-6 space-y-1">
-          <li>Operate, maintain, and improve the RippleTip Service.</li>
+          <li>Operate, maintain, and improve the WaveTip Service.</li>
           <li>Authenticate users via Discord OAuth2.</li>
           <li>Facilitate tipping transactions on the XRP Ledger using RLUSD (or other specified tokens).</li>
           <li>Display user profiles, balances, transaction history, and leaderboards.</li>
@@ -73,7 +73,7 @@ const PrivacyPage = () => {
             <strong>Legal Requirements:</strong> We may disclose your information if required by law, subpoena, or other legal process, or if we believe in good faith that disclosure is necessary to protect our rights, protect your safety or the safety of others, investigate fraud, or respond to a government request.
           </li>
           <li>
-            <strong>Business Transfers:</strong> If RippleTip is involved in a merger, acquisition, or asset sale, your information may be transferred. We will provide notice before your information is transferred and becomes subject to a different privacy policy.
+            <strong>Business Transfers:</strong> If WaveTip is involved in a merger, acquisition, or asset sale, your information may be transferred. We will provide notice before your information is transferred and becomes subject to a different privacy policy.
           </li>
         </ul>
 

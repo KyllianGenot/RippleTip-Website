@@ -96,7 +96,7 @@ const CallToActionSection: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={textControls}
           >
-            RippleTip makes cryptocurrency tipping seamless on Discord. Connect your server today and enhance member engagement with effortless tipping.
+            WaveTip makes cryptocurrency tipping seamless on Discord. Connect your server today and enhance member engagement with effortless tipping.
           </motion.p>
 
           <motion.div 

@@ -1,20 +1,20 @@
-# ✨ RippleTip Website ✨
+# ✨ WaveTip Website ✨
 
 <div align="center">
-  <img src="logo_rippletip.png" alt="RippleTip Logo" width="200"/>
-  <p><em>The official showcase website for the RippleTip Discord Bot.</em></p>
+  <img src="logo_wavetip.png" alt="WaveTip Logo" width="200"/>
+  <p><em>The official showcase website for the WaveTip Discord Bot.</em></p>
   <p>
-    <a href="https://rippletip.vercel.app/" target="_blank" rel="noopener noreferrer"><strong>Visit the Live Site →</strong></a>
+    <a href="https://wavetip.vercel.app/" target="_blank" rel="noopener noreferrer"><strong>Visit the Live Site →</strong></a>
   </p>
 </div>
 
 ## 🌐 Overview
 
-This repository contains the source code for the official website of **RippleTip**, a powerful Discord bot enabling users to send and receive RLUSD tokens on the XRP Ledger (XRPL). This website serves as a landing page, feature showcase, and command reference for the bot.
+This repository contains the source code for the official website of **WaveTip**, a powerful Discord bot enabling users to send and receive RLUSD tokens on the XRP Ledger (XRPL). This website serves as a landing page, feature showcase, and command reference for the bot.
 
 The site is built with modern web technologies, focusing on performance, responsiveness, and a polished user experience.
 
-➡️ **Find the RippleTip Discord Bot repository here:** [https://github.com/RippleTip/rippletip-xrpl](https://github.com/RippleTip/rippletip-xrpl)
+➡️ **Find the WaveTip Discord Bot repository here:** [https://github.com/WaveTip/wavetip-xrpl](https://github.com/WaveTip/wavetip-xrpl)
 
 ## 🚀 Website Key Features
 
@@ -54,8 +54,8 @@ Follow these instructions to set up the project locally for development or contr
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/RippleTip/rippletip-website.git
-    cd RippleTip-Website
+    git clone https://github.com/WaveTip/wavetip-website.git
+    cd WaveTip-Website
     ```
 
 2.  **Install dependencies:**
@@ -104,6 +104,6 @@ src/
 
 ## 🚀 Deployment
 
-*   **Live Site:** [https://rippletip.vercel.app/](https://rippletip.vercel.app/)
+*   **Live Site:** [https://wavetip.vercel.app/](https://wavetip.vercel.app/)
 *   **Build Command:** `npm run build`
 *   **Output Directory:** `dist`
